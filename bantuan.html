@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Chat Customer Service</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .tracking-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #cccccc;
+        }
+
+        .tracking-item:last-child {
+            border-bottom: none;
+        }
+
+        .tracking-date {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .tracking-location {
+            color: #555;
+        }
+
+        #trackingResult {
+            margin-top: 20px;
+        }
+
+        #trackingTable {
+            margin-top: 20px;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #trackingTable th, #trackingTable td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+
+        #trackingTable th {
+            background-color: #f9f9f9;
+        }
+
+        #noTrackingData {
+            color: red;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><span class="butterfly">❤</span> RIMBERIO OFFICIAL STORE <span class="butterfly">❤</span></h1>
+        <div class="auth-links" id="auth-links">
+            <a href="login.html">Masuk</a>
+            <a href="register.html">Daftar</a>
+        </div>
+        <nav>
+            <a href="index.html">Beranda</a>
+            <a href="checkout.html">Keranjang</a>
+            <a href="bantuan.html">Bantuan</a>
+            <a href="about.html">Tentang Kami</a>
+        </nav>
+    </header>
+
+    <!-- Bagian untuk pelacakan resi -->
+    <h3 class="centered">Cek Resi</h3>
+    <div class="resi-tracking">
+        <input type="text" id="resiInput" placeholder="Masukkan nomor resi...">
+        <button onclick="trackResi()">Lacak</button>
+    </div>
+    <div id="trackingResult">
+        <table id="trackingTable" style="width: 100%; border-collapse: collapse; display: none;">
+            <thead>
+                <tr>
+                    <th style="border: 1px solid #ccc; padding: 8px; background-color: #ba2727;">Tanggal</th>
+                    <th style="border: 1px solid #ccc; padding: 8px; background-color: #b2e81e;">Lokasi</th>
+                    <th style="border: 1px solid #ccc; padding: 8px; background-color: #1ade65;">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data pelacakan akan dimasukkan di sini oleh JavaScript -->
+            </tbody>
+        </table>
+        <p id="noTrackingData" style="display: none;">Nomor resi tidak ditemukan. Silakan coba lagi.</p>
+    </div>
+
+    <!-- Bagian untuk chat customer service -->
+    <div class="chat-container">
+        <div class="chat-header">
+            <h2>Customer Support</h2>
+        </div>
+        <div class="chat-messages" id="chat-messages">
+            <h2>Bantuan</h2>
+            <p>Selamat datang di halaman Bantuan kami. Berikut adalah beberapa pertanyaan yang sering diajukan:</p>
+            <h3>1. Bagaimana cara melakukan pemesanan?</h3>
+            <p>Anda dapat memilih produk yang diinginkan, klik Beli akan diarahkan ke checkout, dan mengikuti proses checkout untuk menyelesaikan pemesanan.</p>
+            <h3>2. Metode pembayaran apa saja yang tersedia?</h3>
+            <p>Kami menerima pembayaran melalui COD, Shopeepay, tranfer Bank, dan Emo.</p>
+            <h3>3. Bagaimana cara melacak pesanan saya?</h3>
+            <p>Kami akan mengirim ke nomor yang tercantum pada pesanan untuk memeriksa status pengiriman.</p>
+            <h3>4. Bagaimana cara menghubungi layanan pelanggan?</h3>
+            <p>Anda dapat menghubungi kami melalui email di RIMBERIO@shoesstore.com atau menghubungi kami di +62-812-3456-7890.</p>
+            <h3>5. Bagaimana cara mengembalikan produk?</h3>
+            <p>Kami tidak menerima pengembalian produk.</p>
+            <h3>6. Apa Itu Emo?</h3>
+            <p> Emo adalah uang elektronik dari kita yang dapat menyimpan uang dan memakainya di toko kami.</p>
+            <h3>7. Keunggulan Emo?</h3>
+            <p> Emo dapat melakukan transfer bank, dan belanja di toko kami saja tidak untuk toko lain.</p>
+            <h3>8. Bagaimana Melihat deskripsi produk dan ulasan?</h3> 
+            <p> Anda dapat melihat di gambar produk dengan mengklik gambar dan akan menunjukkan deskripsi produk dan ulasan pelanggan.</p>
+        </div>
+        <div class="chat-input">
+            <textarea id="message-input" placeholder="Tulis pesan..."></textarea>
+            <button onclick="sendMessage()">Kirim</button>
+        </div>
+    </div>
+
+    <!-- FontAwesome untuk ikon pesan baru -->
+    <script src="scripts.js"></script>
+
+    <!-- JavaScript untuk pelacakan resi dan interaktivitas chat -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const trackingData = {
+                '1234567890': [
+                    { date: '2023-06-15', location: 'Bekasi', status: 'Diterima di Gudang' },
+                    { date: '2023-06-16', location: 'DC Jakarta', status: 'Sedang Ditransit' },
+                    { date: '2023-06-17', location: 'Penjaringan', status: 'Sedang Ditransit' },
+                    { date: '2023-06-18', location: 'Menuju Lokasi', status: 'Dalam Pengiriman' }
+                ],
+                '0987654321': [
+                    { date: '2023-06-12', location: 'Bekasi', status: 'Diterima di Gudang' },
+                    { date: '2023-06-13', location: 'DC Jakarta Utara', status: 'Sedang Ditransit' },
+                    { date: '2023-06-14', location: 'DC Jakarta Pusat', status: 'Diterima di Gudang' }
+                ],
+                // Tambahkan data resi lainnya sesuai kebutuhan
+            };
+
+            window.trackResi = function() {
+                const resiInput = document.getElementById('resiInput').value.trim();
+                const trackingResult = document.getElementById('trackingResult');
+                const trackingTable = document.getElementById('trackingTable');
+                const trackingTableBody = document.querySelector('#trackingTable tbody');
+                const noTrackingData = document.getElementById('noTrackingData');
+
+                // Bersihkan tabel dan pesan sebelumnya
+                trackingTableBody.innerHTML = '';
+                trackingTable.style.display = 'none';
+                noTrackingData.style.display = 'none';
+
+                if (resiInput === '') {
+                    noTrackingData.textContent = 'Harap masukkan nomor resi.';
+                    noTrackingData.style.display = 'block';
+                } else if (trackingData[resiInput]) {
+                    const trackingInfo = trackingData[resiInput];
+
+                    trackingInfo.forEach(info => {
+                        const trackingRow = document.createElement('tr');
+                        trackingRow.innerHTML = `<td style="border: 1px solid #ccc; padding: 8px;">${info.date}</td>
+                                                 <td style="border: 1px solid #ccc; padding: 8px;">${info.location}</td>
+                                                 <td style="border: 1px solid #ccc; padding: 8px;">${info.status}</td>`;
+                        trackingTableBody.appendChild(trackingRow);
+                    });
+
+                    trackingTable.style.display = 'table'; // Tampilkan tabel dengan data
+                } else {
+                    noTrackingData.textContent = 'Nomor resi tidak ditemukan. Silakan coba lagi.';
+                    noTrackingData.style.display = 'block';
+                }
+            };
+
+            window.sendMessage = function() {
+                const messageInput = document.getElementById('message-input');
+                const chatMessages = document.getElementById('chat-messages');
+
+                const message = messageInput.value.trim();
+                if (message !== '') {
+                    const userMessage = document.createElement('div');
+                    userMessage.className = 'chat-message user-message';
+                    userMessage.innerHTML = `<p>${message}</p>`;
+                    chatMessages.appendChild(userMessage);
+                    messageInput.value = '';
+
+                    setTimeout(() => {
+                        const botMessage = document.createElement('div');
+                        botMessage.className = 'chat-message bot-message';
+                        botMessage.innerHTML = `<p>Terima kasih atas pesan Anda. Kami akan segera merespons.</p>`;
+                        chatMessages.appendChild(botMessage);
+                        chatMessages.scrollTop = chatMessages.scrollHeight;
+                    }, 1000);
+                }
+            };
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat dengan Penjual</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const productDetails = JSON.parse(localStorage.getItem('chatProductDetails'));
+            if (productDetails) {
+                document.getElementById('productName').innerText = productDetails.name;
+                document.getElementById('productPrice').innerText = 'Harga: Rp ' + productDetails.price;
+                document.getElementById('productImage').src = productDetails.image;
+            }
+
+            const chatBox = document.getElementById('chatBox');
+            const initialMessage = document.createElement('div');
+            initialMessage.classList.add('chat-message', 'bot-message');
+            initialMessage.innerText = 'Ada yang bisa kami bantu kak?';
+            chatBox.appendChild(initialMessage);
+
+            const chatForm = document.getElementById('chatForm');
+            chatForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const message = document.getElementById('chatMessage').value.trim();
+                if (message) {
+                    const newMessage = document.createElement('div');
+                    newMessage.classList.add('chat-message', 'user-message');
+                    newMessage.innerText = message;
+                    chatBox.appendChild(newMessage);
+                    document.getElementById('chatMessage').value = '';
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Chat dengan Penjual</h1>
+    </header>
+    <section class="chat-container">
+        <div class="product-details">
+            <img id="productImage" class="product-image" src="" alt="Product Image">
+            <h2 id="productName" class="product-name"></h2>
+            <p id="productPrice" class="product-price"></p>
+        </div>
+        <div class="chat-box" id="chatBox">
+            <!-- Pesan chat akan muncul di sini -->
+        </div>
+        <form id="chatForm" class="chat-form">
+            <input type="text" id="chatMessage" placeholder="Tulis pesan..." required>
+            <button type="submit">Kirim</button>
+        </form>
+    </section>
+</body>
+</html>

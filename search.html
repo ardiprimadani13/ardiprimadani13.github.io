@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pencarian Produk</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js" defer></script>
+    <script>
+        // Fungsi untuk menangani klik tombol "Beli"
+        function buyNow(productName, productPrice, productImage) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const product = {
+                name: productName,
+                price: productPrice,
+                image: productImage
+            };
+            cart.push(product);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            window.location.href = 'checkout.html';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tangkap parameter query dari URL
+            var queryString = window.location.search;
+            var urlParams = new URLSearchParams(queryString);
+            var keyword = urlParams.get('query');
+
+            // Lakukan pencarian produk berdasarkan kata kunci
+            searchProducts(keyword);
+        });
+
+        function searchProducts(keyword) {
+            if (!keyword) return;
+
+            // Dapatkan semua produk pada halaman
+            var products = document.querySelectorAll('.product');
+            var found = false;
+            keyword = keyword.toLowerCase();
+
+            // Loop melalui setiap produk dan periksa apakah namanya cocok dengan kata kunci pencarian
+            products.forEach(function(product) {
+                var productName = product.querySelector('p').textContent.toLowerCase();
+                var productDiv = product.closest('.product');
+                if (productName.includes(keyword)) {
+                    productDiv.style.display = 'block'; // Tampilkan produk jika cocok dengan kata kunci
+                    found = true;
+                } else {
+                    productDiv.style.display = 'none'; // Sembunyikan produk jika tidak cocok
+                }
+            });
+
+            if (!found) {
+                var noResults = document.createElement('div');
+                noResults.className = 'no-results';
+                noResults.textContent = 'Produk tidak tersedia';
+                document.querySelector('.product-list').appendChild(noResults);
+            }
+        }
+    </script>
+</head>
+<header>
+    <nav>
+        <a href="index.html" class="back-to-home">Kembali ke Beranda</a>
+    </nav>
+</header>
+<body>
+    <header>
+        <h1>Hasil Pencarian</h1>
+    </header>
+    <section class="search-bar">
+        <form id="search-form" action="search.html" method="get">
+            <input type="text" name="query" placeholder="Cari produk...">
+            <button type="submit">Cari</button>
+        </form>
+    </section>
+    <section class="product-list">
+        <div class="product" data-name="Sepatu Adidas" data-price="200.000" data-description="Merek: Adidas.<br>Bahan: Sintesis.<br>Warna : Hitam.<br>Ukuran: 40 - 45." data-reviews="Sangat nyaman dan sesuai ukuran😇  - #Walid - 5; Produk bagus! - #Yuli - 4">
+            <img src="product001.jpg" alt="Produk 1" onclick="showProductDetails(this)">
+            <p>Sepatu Adidas<br> Rp200.000</p>
+            <button class="button-beli" onclick="buyNow('Sepatu Adidas <br>(Hitam)', 200000, 'product001.jpg', ['40', '41', '42', '43', '44', '45'])">Beli</button>
+            <button class="button-chat" onclick="chatWithSeller('Sepatu Adidas', 200000, 'product001.jpg')">✉</button> 
+        </div>            
+        <div class="product" data-name="Sepatu Adidas" data-price="180.000" data-description="Merek: Adidas.<br>Bahan: Sintesis.<br>Warna : Hitam Merah.<br>Ukuran: 40 - 43."  data-reviews="Produk ori. - #Nur Halimah - 4; Kualitas bagus. - #lulu - 4">
+            <img src="product002.jpg" alt="Produk 2" onclick="showProductDetails(this)">
+            <p>Sepatu Adidas<br>Rp180.000</p>
+            <button class="button-beli" onclick="buyNow('Sepatu Adidas<br> (hitam Merah)', 200000, 'product002.jpg', ['40', '41', '42', '43'])">Beli</button>
+            <button class="button-chat" onclick="chatWithSeller('Sepatu Adidas', 200000, 'product002.jpg')">✉</button> 
+        </div>
+        <div class="product" data-name="Sepatu Converse" data-price="205.000" data-description="Merek: Converse.<br>Bahan: Sintesis.<br>Warna : Merah.<br>Ukuran: 40 - 46." data-reviews="Sangat Bagus - #Siti- 5; Produk berkualitas! - #Bela - 5">
+            <img src="product003.jpg" alt="Produk 3" onclick="showProductDetails(this)">
+            <p>Sepatu Converse<br> Rp205.000</p>
+            <button class="button-beli" onclick="buyNow('Sepatu Converse <br> (Merah)', 205000, 'product003.jpg' , ['40', '41', '42', '43','44','45','46'])">Beli</button>
+            <button class="button-chat" onclick="chatWithSeller('Sepatu Adidas', 205000, 'product003.jpg')">✉</button> 
+        </div>
+        <div class="product" data-name="Sepatu Converse" data-price="110.000" data-description="Merek: Converse.<br>Bahan: Sintesis.<br>Warna : Biru.<br>Ukuran: 39 - 42." data-reviews="Pengiriman Lama - #duno - 3; Tidak Mudah Rusak - kukuh - 4">
+            <img src="product004.jpg" alt="Produk 6" onclick="showProductDetails(this)">
+            <p>Sepatu Converse<br> Rp110.000</p>
+            <button class="button-beli" onclick="buyNow('Sepatu Converse<br>(Biru)', 110000, 'product004.jpg', ['39','40', '41', '42'])">Beli</button>
+            <button class="button-chat" onclick="chatWithSeller('Sepatu Adidas', 110000, 'product004.jpg')">✉</button> 
+        </div>
+        <div class="product" data-name="Sepatu Nike" data-price="200.000" data-description="Merek: Adidas.<br>Bahan: Sintesis.<br>Warna : Merah Muda.<br>Ukuran: 38 - 45." data-reviews="Belom Dicek - #Nita - 4; Pengiriman Aman - #Lulu - 5">
+            <img src="product005.jpg" alt="Produk 7" onclick="showProductDetails(this)">
+            <p>Sepatu Nike<br> Rp200.000</p>
+            <button class="button-beli" onclick="buyNow('Sepatu Nike <br>(Merah Muda)', 200000, 'product005.jpg', ['38','39','40', '41', '42', '43', '44', '45'])">Beli</button>
+            <button class="button-chat" onclick="chatWithSeller('Sepatu Nike', 200000, 'product005.jpg')">✉</button> 
+        </div>
+        <div class="product" data-name="Sepatu Anak" data-price="250.000" data-description="Merek: Hikekicks.<br>Bahan: kanvas.<br>Warna : Putih.<br>Ukuran: 21 - 30."  data-reviews="Sangat Kuat - #Windy - 5; Sangat bermanfaat - #Kiki - 5">
+            <img src="product006.jpg" alt="Produk 8" onclick="showProductDetails(this)">
+            <p>Sepatu Anak<br>Rp250.000</p>
+            <button class="button-beli" onclick="buyNow('Sepatu Anak<br>(Putih)', 250000, 'product006.jpg', ['21','22','23', '24', '25', '26', '27', '28','29','30'])">Beli</button>
+            <button class="button-chat" onclick="chatWithSeller('Sepatu Hikekicks', 250000, 'product001.jpg')">✉</button> 
+        </div>
+        <div class="product" data-name="" data-price="200.000" data-description="Merek: Hikekicks.<br>Bahan: kanvas.<br>Warna : Putih.<br>Ukuran: 21 - 30."  data-reviews="Sangat Lengkap - #Daku - 5; Komplit - #Luna - 5">
+            <img src="product30.jpg" alt="Produk 1" onclick="showProductDetails(this)">
+            <p>Sepatu Hikekicks<br> Rp200.000</p>
+            <button class="button-beli" onclick="buyNow('Sepatu Hikekicks<br>(Putih)', 200000, 'product30.jpg', ['21','22','23', '24', '25', '26', '27', '28','29','30'])">Beli</button>
+            <button class="button-chat" onclick="chatWithSeller('Sepatu Hikekicks', 200000, 'product30.jpg')">✉</button> 
+        </div>
+        <div class="product" data-name="Sepatu Hikekicks" data-price="350.000" data-description="Merek: Hikekicks.<br>Bahan: kanvas.<br>Warna : Putih Warna.<br>Ukuran: 21 - 30."  data-reviews="Wangi - #Susi - 5; Tidak Enak Baunya - #Zidan - 4">
+            <img src="product31.jpg" alt="Produk 1" onclick="showProductDetails(this)">
+            <p>Sepatu Hikekicks<br>Rp350.000</p>
+            <button class="button-beli" onclick="buyNow('Sepatu Hikekicks<br>(Putih Warna)', 350000, 'product31.jpg', ['21','22','23', '24', '25', '26', '27', '28','29','30'])">Beli</button>
+            <button class="button-chat" onclick="chatWithSeller('Sepatu Hikekicks', 350000, 'product31.jpg')">✉</button> 
+        </div>
+        <div class="product" data-name="Sepatu Hikekicks" data-price="210.000" data-description="Merek: Hikekicks.<br>Bahan: kanvas.<br>Warna : Hitam.<br>Ukuran: 21 - 30."  data-reviews="Lengket - #Andi - 5; Lembut - #Jaki - 4">
+            <img src="product32.jpg" alt="Produk 1" onclick="showProductDetails(this)">
+            <p>Sepatu Hikekicks<br>Rp210.000</p>
+            <button class="button-beli" onclick="buyNow('Sepatu Hikekicks<br>(Hitam)', 210000, 'product32.jpg', ['21','22','23', '24', '25', '26', '27', '28','29','30'])">Beli</button>
+            <button class="button-chat" onclick="chatWithSeller('Sepatu Hikekicks', 20000, 'product32.jpg')">✉</button> 
+        </div>
+        <div class="product" data-name="Sepatu Hikekicks" data-price="200.000" data-description="Merek: Hikekicks.<br>Bahan: kanvas.<br>Warna : Hitam Putih.<br>Ukuran: 21 - 30."  data-reviews="Pas Ukuran - #vina - 5; Rusak - #duna - 3">
+            <img src="product33.jpg" alt="Produk 1" onclick="showProductDetails(this)">
+            <p>Sepatu Hikekicks<br>Rp200.000</p>
+            <button class="button-beli" onclick="buyNow('Sepatu Hikekicks<br>(Hitam Putih)', 200000, 'product33.jpg', ['21','22','23', '24', '25', '26', '27', '28','29','30'])">Beli</button>
+            <button class="button-chat" onclick="chatWithSeller('Sepatu Hikekicks', 200000, 'product33.jpg')">✉</button> 
+        </div>
+        <div class="product" data-name="Sepatu Hikekicks" data-price="350.000" data-description="Merek: Hikekicks.<br>Bahan: kanvas.<br>Warna : Abu-Abu.<br>Ukuran: 21 - 30."  data-reviews="Besaran - #Anita - 4; Cantik - #avy - 5">
+            <img src="product34.jpg" alt="Produk 1" onclick="showProductDetails(this)">
+            <p>Sepatu Hikekicks<br>Rp350.000</p>
+            <button class="button-beli" onclick="buyNow('Sepatu Hikekicks Transparan<br>(Abu-Abu)', 350000, 'product34.jpg', ['21','22','23', '24', '25', '26', '27', '28','29','30'])">Beli</button>
+            <button class="button-chat" onclick="chatWithSeller('Sepatu Hikekicks', 350000, 'product34.jpg')">✉</button> 
+        </div>
+        <div class="product" data-name="Sepatu Hikekicks" data-price="350.000" data-description="Merek: Hikekicks.<br>Bahan: kanvas.<br>Warna : Putih Warna.<br>Ukuran: 21 - 30."  data-reviews="Lumayan - #Daka - 4; Biasa Aja - #Luna - 4">
+            <img src="product35.jpg" alt="Produk 1" onclick="showProductDetails(this)">
+            <p>Sepatu Hikekicks<br>Rp350.000</p>
+            <button class="button-beli" onclick="buyNow('Sepatu Hikekicks Mika<br>(Putih Warna)', 350000, 'product35.jpg', ['21','22','23', '24', '25', '26', '27', '28','29','30'])">Beli</button>
+            <button class="button-chat" onclick="chatWithSeller('Sepatu Hikekicks', 350000, 'product35.jpg')">✉</button> 
+        </div>
+        <div class="product" data-name="Sepatu Hipzi" data-price="200.000" data-description="Merek: Hikekicks.<br>Bahan: Kulit Sintetis.<br>Warna : Kuning Warna.<br>Ukuran: 21 - 30."  data-reviews="Desain Yang Sempurna - #Zidan - 5; Bagusada Tutupnya - #Julian - 5">
+            <img src="product37.jpg" alt="Produk 1" onclick="showProductDetails(this)">
+            <p>Sepatu Hipzi<br>Rp200.000</p>
+            <button class="button-beli" onclick="buyNow('Sepatu Hipzi<br>(Kuning Warna)', 20000, 'product37.jpg', ['21','22','23', '24', '25', '26', '27', '28','29','30'])">Beli</button>
+            <button class="button-chat" onclick="chatWithSeller('Sepatu Hipzi', 200000, 'product37.jpg')">✉</button> 
+        </div>
+        <div class="product" data-name="Sepatu Hipzi" data-price="200.000" data-description="Merek: Hipzi.<br>Bahan: Kulit Sintetis.<br>Warna : Pink Putih.<br>Ukuran: 21 - 30."  data-reviews="Bagus - #Riska - 5; Good - #Salsa - 5">
+            <img src="product38.jpg" alt="Produk 1" onclick="showProductDetails(this)">
+            <p>Sepatu Hipzi<br>Rp200.000</p>
+            <button class="button-beli" onclick="buyNow('Sepatu Hipzi<br>(Pink Putih)', 200000, 'product38.jpg', ['21','22','23', '24', '25', '26', '27', '28','29','30'])">Beli</button>
+            <button class="button-chat" onclick="chatWithSeller('Sepatu Hipzi', 200000, 'product38.jpg')">✉</button> 
+        </div>
+        <div class="product" data-name="Sepatu Hipzi" data-price="200.000" data-description="Merek: Hipzi.<br>Bahan: Kulit Sintetis.<br>Warna : Putih.<br>Ukuran: 21 - 30."  data-reviews="Lumayan - #Dion - 5; Sesuai - #Sania - 5">
+            <img src="product36.jpg" alt="Produk 1" onclick="showProductDetails(this)">
+            <p>Sepatu Hipzi<br>Rp200.000</p>
+            <button class="button-beli" onclick="buyNow('Sepatu Hipzi<br>(Putih Abu)', 200000, 'product36.jpg', ['21','22','23', '24', '25', '26', '27', '28','29','30'])">Beli</button>
+            <button class="button-chat" onclick="chatWithSeller('Sepatu Hipzi', 200000, 'product36.jpg')">✉</button> 
+        </div>
+        <div class="product" data-name=" Sepatu Adidas" data-price="100.000" data-description="Merek: Adidas.<br>Bahan: Sintesis.<br> Warna : Hitam Putih.<br>Ukuran: 38 - 45." data-reviews="Toko Amanat😇 - #Wafi - 5; Produk Elegan - #Yuni - 5">
+            <img src="product4.jpg" alt="Produk 1" onclick="showProductDetails(this)" >
+            <p>Sepatu Adidas<br> Rp100.000</p>
+            <button class="button-beli" onclick="buyNow('Sepatu Adidas<br>(Hitam Putih)', 100000, 'product4.jpg', ['38','39','40', '41', '42', '43', '44', '45'] )">Beli</button>
+            <button class="button-chat" onclick="chatWithSeller('Sepatu Adidas', 100000, 'product4.jpg')">✉</button> 
+        </div>
+        <div class="product" data-name="Sepatu Adidas" data-price="120.000" data-description="Merek:Adidas.<br>Bahan: Sintesis.<br> Warna : Putih.<br>Ukuran: 38 - 46." data-reviews="Toko dapat di percaya - #Nina - 5; Sungguh Bagus - #Runi - 5">
+            <img src="product2.jpg" alt="Produk 2" onclick="showProductDetails(this)">
+            <p>Sepatu Adidas <br> Rp120.000</p>
+            <button class="button-beli" onclick="buyNow('Sepatu Adidas<br>(Putih)', 120000, 'product2.jpg' , ['38','39','40', '41', '42', '43', '44', '45','46'])">Beli</button>
+            <button class="button-chat" onclick="chatWithSeller('Sepatu Adidas', 120000, 'product2.jpg')">✉</button> 
+        </div>
+        <div class="product" data-name="Sepatu Adidas" data-price="100.000" data-description="Merek:Adidas.<br>Bahan: Sintesis.<br> Warna : Abu-Abu.<br>Ukuran: 41 - 45." data-reviews="Kardus Produk Rusak - #Dava - 3; Kurir Tidak Ramah - #Luna - 3">
+            <img src="product3.jpg" alt="Produk 3" onclick="showProductDetails(this)">
+            <p>Sepatu Adidas<br> Rp110.000</p>
+            <button class="button-beli" onclick="buyNow('Sepatu Adidas<br>(Abu-Abu)', 110000, 'product3.jpg', ['41', '42', '43', '44', '45'])">Beli</button>
+            <button class="button-chat" onclick="chatWithSeller('Sepatu Adidas', 110000, 'product3.jpg')">✉</button> 
+        </div>
+        <div class="product" data-name="Sepatu Nike" data-price="170.000" data-description="Merek: Nike.<br>Bahan: Kulit.<br> Warna : Coklat Putih.<br>Ukuran: 37 - 45." data-reviews="Kardus Produk Aman - #Davit - 5; Tidak Mengecewakan - #Luni - 5">
+            <img src="product5.jpg" alt="Produk 2" onclick="showProductDetails(this)">
+            <p>Sepatu Nike<br> Rp170.000</p>
+            <button class="button-beli" onclick="buyNow('Sepatu Nike<br>(Coklat Putih)', 170000, 'product5.jpg', ['37','38','39','40', '41', '42', '43', '44', '45'])">Beli</button>
+            <button class="button-chat" onclick="chatWithSeller('Sepatu Nike', 170000, 'product5.jpg')">✉</button> 
+        </div>
+        <div class="product" data-name="Sepatu Nike" data-price="200.000" data-description="Merek: Nike.<br>Bahan: Kulit.<br> Warna : Putih Coklat.<br>Ukuran: 42 - 45." data-reviews="Bahan Bagus - #Adit - 5; Mudah Digunakan - #Brain - 5">
+            <img src="product6.jpg" alt="Produk 2" onclick="showProductDetails(this)">
+            <p>Sepatu Nike<br> Rp200.000</p>
+            <button class="button-beli" onclick="buyNow('Sepatu Nike<br>(Putih Coklat)', 200000, 'product6.jpg', ['42', '43', '44', '45'])">Beli</button>
+            <button class="button-chat" onclick="chatWithSeller('Sepatu Nike', 200000, 'product6.jpg')">✉</button> 
+        </div>
+        <div class="product" data-name="Sepatu Nike" data-price="110.000" data-description="Merek: Nike.<br>Bahan: Kulit.<br> Warna : Hitam.<br>Ukuran: 41 - 45." data-reviews="Aku suka - #Dinda - 5; Paket Terjaga - #Siska - 5">
+            <img src="product7.jpg" alt="Produk 2" onclick="showProductDetails(this)">
+            <p>Sepatu Nike<br> Rp110.000</p>
+            <button class="button-beli" onclick="buyNow('Sepatu Nike<br>(Hitam)', 110000, 'product7.jpg', ['41', '42', '43', '44', '45'])">Beli</button>
+            <button class="button-chat" onclick="chatWithSeller('Sepatu Nike', 110000, 'product7.jpg')">✉</button> 
+        </div>
+        <div class="product" data-name="Sepatu Saba" data-price="105.000" data-description="Merek: Saba.<br>Bahan: Kanvas.<br> Warna : Hitam.<br>Ukuran: 37 - 45." data-reviews="Chat Lama - #Amel - 2; Kurir Baik - #Pino - 5">
+            <img src="product9.jpg" alt="Produk 2" onclick="showProductDetails(this)">
+            <p>Sepatu Saba<br> Rp105.000</p>
+            <button class="button-beli" onclick="buyNow('Sepatu Saba<br>(Hitam)', 105000, 'product9.jpg', ['37','38','39','40', '41', '42', '43', '44', '45'])">Beli</button>
+            <button class="button-chat" onclick="chatWithSeller('Sepatu Saba', 105000, 'product9.jpg')">✉</button> 
+        </div>
+        <div class="product" data-name="Sepatu Saba" data-price="110.000" data-description="Merek: Saba.<br>Bahan: Kanvas.<br> Warna : Hitam Putih.<br>Ukuran: 41 - 45." data-reviews="Lumayan - #Daka - 4; Biasa Aja - #Luna - 4">
+            <img src="product10.jpg" alt="Produk 2" onclick="showProductDetails(this)">
+            <p>Sepatu Saba<br> Rp110.000</p>
+            <button class="button-beli" onclick="buyNow('Sepatu Saba<br>(Hitam)', 110000, 'product10.jpg', ['41', '42', '43', '44', '45'])">Beli</button>
+            <button class="button-chat" onclick="chatWithSeller('Sepatu Saba', 110000, 'product10.jpg')">✉</button> 
+        </div>
+        <div class="product" data-name="Sepatu Saba" data-price="195.000" data-description="Merek: Saba.<br>Bahan: Kanvas.<br> Warna : Hitam Putih.<br>Ukuran: 41 - 45." data-reviews="Ukuran Sesuai - #kinan - 5; Tidak Suka - #Tio - 3">
+            <img src="product12.jpg" alt="Produk 2" onclick="showProductDetails(this)">
+            <p>Sepatu Saba<br> Rp195.000</p>
+            <button class="button-beli" onclick="buyNow('Sepatu Saba<br>(Hitam)', 195000, 'product12.jpg' , ['41', '42', '43', '44', '45'])">Beli</button>
+            <button class="button-chat" onclick="chatWithSeller('Sepatu Saba', 195000, 'product12.jpg')">✉</button> 
+        </div>
+        <div class="product" data-name="Sepatu Adidas" data-price="250.000" data-description="Merek: Adidas.<br>Bahan: Sintesis.<br>Warna : Putih.<br>Ukuran: 38 - 45." data-reviews="Bahan Bagus😇 - #Wilson - 5; Mewah - #Caca - 5">
+            <img src="product21.jpg" alt="Produk 1" onclick="showProductDetails(this)">
+            <p>Sepatu Adidas<br> Rp250.000</p>
+            <button class="button-beli" onclick="buyNow('Sepatu Adidas <br> (Putih)', 250000, 'product21.jpg', ['38','39','40', '41', '42', '43', '44', '45'])">Beli</button>
+            <button class="button-chat" onclick="chatWithSeller('Sepatu Adidas', 200000, 'product001.jpg')">✉</button> 
+        </div>
+        <div class="product" data-name="Sepatu Adidas" data-price="125.000" data-description="Merek: Adidas.<br>Bahan: Sintesis.<br>Warna : Pink.<br>Ukuran: 35 - 42." data-reviews="Imut - #Zahra - 5; Cantik - #Tuti - 5">
+            <img src="product22.jpg" alt="Produk 2" onclick="showProductDetails(this)">
+            <p>Sepatu Adidas<br> Rp125.000</p>
+            <button class="button-beli" onclick="buyNow('Sepatu Adidas <br> (Pink)', 125000, 'product22.jpg', ['35','35','37','38','39','40', '41', '42'])">Beli</button>
+            <button class="button-chat" onclick="chatWithSeller('Sepatu Adidas', 200000, 'product001.jpg')">✉</button> 
+        </div>
+        <div class="product" data-name="Sepatu Adidas" data-price="160.000" data-description="Merek: Adidas.<br>Bahan: Sintesis.<br>Warna : Biru.<br>Ukuran: 38 - 45." data-reviews="Elegan😇 - #Cici - 5; Mudah Dicuci - #Vexana - 5">
+            <img src="product23.jpg" alt="Produk 3" onclick="showProductDetails(this)">
+            <p>Sepatu Adidas<br> Rp160.000</p>
+            <button class="button-beli" onclick="buyNow('Sepatu Adidas <br> (Biru)', 160000, 'product23.jpg', ['38','39','40', '41', '42', '43', '44', '45'])">Beli</button>
+            <button class="button-chat" onclick="chatWithSeller('Sepatu Adidas', 200000, 'product001.jpg')">✉</button> 
+        </div>
+        <div class="product" data-name="Sepatu Nike " data-price="140.000" data-description="Merek: Nike.<br>Bahan: Kulit.<br>Warna : Abu-Abu.<br>Ukuran: 35 - 45." data-reviews="Bagus Pelayanan - #Silvana - 5;  Sangat Membantu - #Miya - 5">
+            <img src="product24.jpg" alt="Produk 2" onclick="showProductDetails(this)">
+            <p>Sepatu Nike<br> Rp140.000</p>
+            <button class="button-beli" onclick="buyNow('Sepatu Nike <br>(Abu-Abu)', 140000, 'product24.jpg', ['35','36','37','38','39','40', '41', '42', '43', '44', '45'])">Beli</button>
+            <button class="button-chat" onclick="chatWithSeller('Sepatu Nike', 200000, 'product001.jpg')">✉</button> 
+        </div>
+        <div class="product" data-name="Sepatu Nike" data-price="200.000" data-description="Merek: Nike.<br>Bahan: Kulit.<br>Warna : Putih.<br>Ukuran: 36 - 40." data-reviews="Pacarku Suka - #Amon - 5; Lain kali pesen lagi - #Mona - 5">
+            <img src="product25.jpg" alt="Produk 2" onclick="showProductDetails(this)">
+            <p>Sepatu Nike<br> Rp200.000</p>
+            <button class="button-beli" onclick="buyNow('Sepatu Nike <br> (Putih)', 200000, 'product25.jpg', ['36','37','38','39','40'])">Beli</button>
+            <button class="button-chat" onclick="chatWithSeller('Sepatu Nike', 200000, 'product001.jpg')">✉</button> 
+        </div>
+        <div class="product" data-name="Sepatu Nike" data-price="115.000" data-description="Merek: Nike.<br>Bahan: Kulit.<br>Warna : Hitam Putih.<br>Ukuran: 38 - 45." data-reviews="Bagus Banget - #Franco - 5; Suka Banget - #Layla - 5">
+            <img src="product26.jpg" alt="Produk 2" onclick="showProductDetails(this)">
+            <p>Sepatu Nike<br> Rp115.000</p>
+            <button class="button-beli" onclick="buyNow('Sepatu Nike <br> (Hitam Putih)', 115000, 'product26.jpg', ['38','39','40', '41', '42', '43', '44', '45'])">Beli</button>
+            <button class="button-chat" onclick="chatWithSeller('Sepatu Nike', 200000, 'product001.jpg')">✉</button> 
+        </div>
+        <div class="product" data-name="Sepatu Converse" data-price="230.000" data-description="Merek: Sepatu Converse.<br>Bahan: Kanvas.<br>Warna : Hitam.<br>Ukuran: 38 - 45." data-reviews="Bagus - #Ulan - 5; Produk Ori - #Ailen - 5">
+            <img src="product27.jpg" alt="Produk 2" onclick="showProductDetails(this)">
+            <p>Sepatu Converse<br> Rp230.000</p>
+            <button class="button-beli" onclick="buyNow('Sepatu Converse <br> (Hitam)', 230000, 'product27.jpg', ['38','39','40', '41', '42', '43', '44', '45'])">Beli</button>
+            <button class="button-chat" onclick="chatWithSeller('Sepatu Converse', 200000, 'product001.jpg')">✉</button> 
+        </div>
+        <div class="product" data-name="Sepatu Converse" data-price="210.000" data-description="Merek: Sepatu Converse.<br>Bahan: Kanvas.<br>Warna : Putih.<br>Ukuran: 38 - 45." data-reviews="Tidak Mudah Rusak - #Prilly - 5; Jahitan Rapi - #Ratu - 5">
+            <img src="product28.jpg" alt="Produk 2" onclick="showProductDetails(this)">
+            <p>Sepatu Converse<br> Rp210.000</p>
+            <button class="button-beli" onclick="buyNow('Sepatu Converse <br> (Putih)', 210000, 'product28.jpg'['38','39','40', '41', '42', '43', '44', '45'])">Beli</button>
+            <button class="button-chat" onclick="chatWithSeller('Sepatu Converse', 200000, 'product001.jpg')">✉</button> 
+        </div>
+        <div class="product" data-name="Sepatu Converse" data-price="230.000" data-description="Merek: Sepatu Converse.<br>Bahan: Kanvas.<br>Warna : Hijau.<br>Ukuran: 38 - 45." data-reviews="Awet - #Tika - 5; Model Bagus - #Ibnu - 5">
+            <img src="product29.jpg" alt="Produk 2" onclick="showProductDetails(this)">
+            <p>Sepatu Converse<br> Rp230.000</p>
+            <button class="button-beli" onclick="buyNow('Sepatu Converse <br> (Hijau)', 230000, 'product29.jpg'['38','39','40', '41', '42', '43', '44', '45'])">Beli</button>
+            <button class="button-chat" onclick="chatWithSeller('Sepatu Converse', 200000, 'product001.jpg')">✉</button> 
+        </div>
+ <!-- Modal untuk detail produk -->
+ <div id="productModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2 id="modalProductName"></h2>
+        <p id="modalProductPrice"></p>
+        <p id="modalProductDescription"></p>
+        <h3>Ulasan Pelanggan</h3>
+        <ul id="modalProductReviews"></ul>
+    </div>
+</div>
+<script>
+    // Function to handle "Beli" button click
+    function buyNow(productName, productPrice, productImage) {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const product = {
+            name: productName,
+            price: productPrice,
+            image: productImage
+        };
+        cart.push(product);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        window.location.href = 'checkout.html';
+    }
+
+    // Function to handle "Chat" button click
+    function chatWithSeller(productName, productPrice, productImage) {
+        // Logic to implement chat functionality
+        console.log('Chat with seller about ' + productName);
+        // Replace this with your actual chat implementation
+    }
+
+    // Function to show product details modal
+    function showProductDetails(element) {
+        var productName = element.nextElementSibling.textContent;
+        var productPrice = element.nextElementSibling.nextElementSibling.textContent;
+        var productDescription = element.parentElement.getAttribute('data-description');
+        var productReviews = element.parentElement.getAttribute('data-reviews').split(';');
+
+        document.getElementById('modalProductName').textContent = productName;
+        document.getElementById('modalProductPrice').textContent = productPrice;
+        document.getElementById('modalProductDescription').innerHTML = productDescription;
+
+        var reviewsList = document.getElementById('modalProductReviews');
+        reviewsList.innerHTML = '';
+        productReviews.forEach(function(review) {
+            var reviewItem = document.createElement('li');
+            reviewItem.textContent = review;
+            reviewsList.appendChild(reviewItem);
+        });
+
+        var modal = document.getElementById('productModal');
+        modal.style.display = 'block';
+    }
+
+    // Function to close product details modal
+    function closeModal() {
+        var modal = document.getElementById('productModal');
+        modal.style.display = 'none';
+    }
+
+    // Function to enter tracking number modal
+    function enterResiNumber(productName) {
+        var modal = document.getElementById('resiModal');
+        var productResi = document.getElementById('productResi');
+        productResi.textContent = 'Masukkan nomor Pesanan ID untuk produk ' + productName;
+        modal.style.display = 'block';
+    }
+
+    // Function to close tracking number modal
+    function closeResiModal() {
+        var modal = document.getElementById('resiModal');
+        modal.style.display = 'none';
+    }
+
+    // Function to check tracking number
+    function checkResiNumber(productName) {
+        var resiInput = document.getElementById('resiInput').value;
+        // Logic to check the tracking number
+        console.log('Checking tracking number for ' + productName + ' with ID: ' + resiInput);
+        closeResiModal();
+    }
+
+    // Function to show rating modal
+    function enterResiNumber(productName) {
+        var modal = document.getElementById('ratingModal');
+        var productResi = document.getElementById('productResi');
+        productResi.textContent = 'Masukkan nomor Pesanan ID untuk produk ' + productName;
+        modal.style.display = 'block';
+    }
+
+    // Function to close rating modal
+    function closeRatingModal() {
+        var modal = document.getElementById('ratingModal');
+        modal.style.display = 'none';
+    }
+
+    // Function to select rating stars
+    var selectedRating = 0;
+    function selectRating(value) {
+        selectedRating = value;
+        var stars = document.querySelectorAll('.rating .star');
+        stars.forEach(function(star, index) {
+            if (index < value) {
+                star.style.color = 'orange';
+            } else {
+                star.style.color = 'black';
+            }
+        });
+    }
+
+    // Function to submit rating
+    function submitRating() {
+        var reviewText = document.getElementById('reviewText').value;
+        // You can send selectedRating and reviewText to your backend or process them as needed
+        console.log('Submitting rating: ' + selectedRating + ', Review: ' + reviewText);
+        closeRatingModal();
+    }
+</script>
+        <!-- Tambahkan lebih banyak produk hasil pencarian jika diperlukan -->
+    </section>
+</body>
+</html>
+

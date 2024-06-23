@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout Toko Sepatu</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1><span class="butterfly">&#10084;</span> RIMBERIO OFFICIAL STORE <span class="butterfly">&#10084;</span></h1>
+        <nav>
+            <a href="index.html">Beranda</a>
+            <a href="checkout.html">Keranjang</a>
+            <a href="bantuan.html">Bantuan</a>
+            <a href="about.html">Tentang Kami</a>
+        </nav>
+    </header>
+    <section class="checkout">
+        <h2>Pembayaran</h2>
+        <div class="cart" id="cart">
+            <!-- Barang keranjang akan dimasukkan di sini oleh JavaScript -->
+        </div>
+        <div id="modal" class="modal">
+            <div id="modal-content" class="modal-content">
+                <!-- Konten modal akan di-generate secara dinamis -->
+            </div>
+        </div>
+        <div id="checkout-summary">
+            <table>
+                <tr>
+                    <td class="left-aligned">Total Produk:</td>
+                    <td class="center-aligned"><span id="total-products" class="highlight-box"></span></td>
+                </tr>
+                <tr>
+                    <td class="left-aligned">Harga Produk:</td>
+                    <td class="center-aligned"><span id="total-price" class="highlight-box"></span></td>
+                </tr>
+                <tr>
+                    <td class="left-aligned">Diskon:</td>
+                    <td class="center-aligned"><span id="discount" class="highlight-box"></span></td>
+                </tr>
+                <tr>
+                    <td class="left-aligned">Total Harga:</td>
+                    <td class="center-aligned"><span id="total-after-discount" class="highlight-box"></span></td>
+                </tr>
+            </table>
+        </div>
+        <h3>Informasi Pesanan</h3>
+        <form id="checkout-form">
+            <table class="order-info">
+                <tr>
+                    <td><label for="name">Nama Lengkap:</label></td>
+                    <td><input type="text" id="name" name="name" required></td>
+                </tr>
+                <tr>
+                    <td><label for="phone">Nomor Telepon:</label></td>
+                    <td><input type="tel" id="phone" name="phone" required></td>
+                </tr>
+                <tr>
+                    <td><label for="province">Provinsi:</label></td>
+                    <td>
+                        <select id="province" name="province" required>
+                            <option value="">-Pilih Provinsi-</option>
+                            <option value="Jakarta Utara">Jakarta Utara</option>
+                            <option value="Jakarta Timur">Jakarta Timur</option>
+                            <option value="Jakarta Selatan">Jakarta Selatan</option>
+                            <option value="Jakarta Barat">Jakarta Barat</option>
+                            <option value="Jakarta Pusat">Jakarta Pusat</option>
+                            <option value="Bandung">Bandung</option>
+                            <option value="Bekasi">Bekasi</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="address">Alamat:</label></td>
+                    <td><textarea id="address" name="address" rows="4" cols="50" required></textarea></td>
+                </tr>
+                <tr>
+                    <td><label for="message">Pesan Tambahan:</label></td>
+                    <td><textarea id="message" name="message" rows="4" cols="50"></textarea></td>
+                </tr>
+                <tr>
+                    <td><label for="payment-method">Metode Pembayaran:</label></td>
+                    <td>
+                        <select id="payment-method" name="payment-method" required>
+                            <option value="cod">Bayar di Tempat (COD)</option>
+                            <option value="transfer-bank">Transfer Bank</option>
+                            <option value="shopeepay">ShopeePay</option>
+                            <option value="Emo">Emo</option>
+                            <!-- Tambahkan metode pembayaran lain jika diperlukan -->
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            <br>
+            <button type="submit" class="btn-submit">Lanjut ke Pembayaran</button>
+        </form>
+    </section>
+    <br>
+    <br>
+    <script>
+        document.getElementById('checkout-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const paymentMethod = document.getElementById('payment-method').value;
+            const province = document.getElementById('province').value;
+
+            localStorage.setItem('selectedPaymentMethod', paymentMethod);
+            localStorage.setItem('selectedProvince', province);
+            window.location.href = 'order.html';
+        });
+
+        const orderHistoryContainer = document.getElementById('order-history');
+        orderHistory.forEach(order => {
+            const orderElement = document.createElement('div');
+            orderElement.classList.add('order-item');
+            orderElement.innerHTML = `
+                <div class="order-header">
+                    <h3>Pesanan ID: ${order.id}</h3>
+                    <p>Tanggal: ${order.date}</p>
+                    <p>Status: ${order.status}</p>
+                    <p>Nomor Resi: ${order.resi}</p>
+                    <p>Total Harga: Rp ${order.total}</p>
+                </div>
+                <div class="ordered-products">
+                    <h4>Daftar Produk:</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Gambar</th>
+                                <th>Nama Produk</th>
+                                <th>Harga</th>
+                                <th>Jumlah</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${order.products.map(product => `
+                                <tr>
+                                    <td class="product-item"><img src="${product.image}" alt="${product.name}"></td>
+                                    <td>${product.name}</td>
+                                    <td>Rp ${product.price}</td>
+                                    <td>${product.quantity}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+            orderHistoryContainer.appendChild(orderElement);
+        });
+    </script>
+    <section class="history">
+        <h2>Riwayat Belanja</h2>
+        <div id="order-history" class="order-history">
+            <!-- Daftar riwayat belanjaan akan dimasukkan di sini oleh JavaScript -->
+            <div class="order-item">
+                <div class="order-header">
+                    <h3>Pesanan ID: 123456789</h3>
+                    <p>Tanggal: 18 Juni 2024</p>
+                    <p>Status: Selesai</p>
+                    <p>Nomor Resi: 123ABC</p>
+                    <p>Total Harga: Rp 200000</p>
+                </div>
+                <div class="ordered-products">
+                    <h4>Daftar Produk:</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Gambar</th>
+                                <th>Nama Produk</th>
+                                <th>Harga</th>
+                                <th>Jumlah</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="product-item"><img src="product001.jpg" alt="Sepatu Adidas"></td>
+                                <td>Sepatu Adidas</td>
+                                <td>Rp 200000</td>
+                                <td>1</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button class="button-rate" onclick="enterResiNumber('Sepatu Adidas')">Penilaian</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br>
+    <br>
+
+     <!-- Modal untuk pemasukan nomor resi -->
+     <div id="resiModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeResiModal()">&times;</span>
+            <h2>Pemasukan No Pesanan ID</h2>
+            <p>Masukkan nomor Pesanan ID yang benar untuk produk ini:</p>
+            <input type="text" id="resiInput" placeholder="Masukkan nomor Pesanan ID...">
+            <button class="button-submit" onclick="checkResiNumber('Sepatu Adidas')">Masuk</button>
+        </div>
+    </div>
+
+  <!-- Modal untuk penilaian produk -->
+<div id="ratingModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeRatingModal()">&times;</span>
+        <h2>Penilaian Produk</h2>
+        <p id="productResi"></p>
+        <div class="rating">
+            <span class="star" data-value="1" onclick="setRating(1)">&#9733;</span>
+            <span class="star" data-value="2" onclick="setRating(2)">&#9733;</span>
+            <span class="star" data-value="3" onclick="setRating(3)">&#9733;</span>
+            <span class="star" data-value="4" onclick="setRating(4)">&#9733;</span>
+            <span class="star" data-value="5" onclick="setRating(5)">&#9733;</span>
+        </div>
+        <textarea id="reviewText" rows="4" cols="50" placeholder="Tulis ulasan Anda di sini..."></textarea>
+        <input type="hidden" id="selectedRating">
+        <button class="button-submit" onclick="submitRating()">Kirim Penilaian</button>
+    </div>
+</div>
+</head>
+</body>
+</html>
+

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emo - Top-Up</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function handleConfirmation() {
+            // Mendapatkan nilai dari pilihan top-up dan metode pembayaran yang dipilih
+            const selectedNominal = document.querySelector('input[name="nominal"]:checked').value;
+            const selectedPaymentMethod = document.querySelector('input[name="payment-method"]:checked').value;
+            
+            // Generate kode pembayaran (misalnya, secara acak untuk simulasi)
+            const kodePembayaran = Math.floor(Math.random() * 1000000) + 100000;
+            
+            // Membuat detail top-up untuk ditampilkan di halaman baru
+            const detailTopup = `
+                <h1>Detail Top-Up Dana</h1>
+                <h2>Informasi Top-Up:</h2>
+                <p>Nominal: Rp. ${selectedNominal}</p>
+                <p>Metode Pembayaran: ${selectedPaymentMethod}</p>
+                <h2>Kode Pembayaran:</h2>
+                <p><strong>${kodePembayaran}</strong></p>
+                <button onclick="window.close()">Tutup Halaman</button>
+                <button onclick="location.href='dana.html'">Kembali ke Dana</button>
+            `;
+            
+            // Membuka halaman baru untuk menampilkan detail top-up
+            const newWindow = window.open();
+            newWindow.document.body.innerHTML = detailTopup;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h2>Top-Up Emo</h2>
+        </header>
+        
+        <section class="topup-options">
+            <h2>Pilih Nominal Top-Up</h2>
+            <form action="#">
+                <div class="form-group">
+                    <label for="nominal-10k">
+                        <input type="radio" id="nominal-10k" name="nominal" value="10000"> Rp. 10.000
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="nominal-20k">
+                        <input type="radio" id="nominal-20k" name="nominal" value="20000"> Rp. 20.000
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="nominal-50k">
+                        <input type="radio" id="nominal-50k" name="nominal" value="50000"> Rp. 50.000
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="nominal-100k">
+                        <input type="radio" id="nominal-100k" name="nominal" value="100000"> Rp. 100.000
+                    </label>
+                </div>
+            </form>
+        </section>
+
+        <section class="payment-methods">
+            <h2>Pilih Metode Pembayaran</h2>
+            <form action="#">
+                <div class="form-group">
+                    <label for="payment-credit-debit">
+                        <input type="radio" id="payment-credit-debit" name="payment-method" value="Gerai Terdekat"> Gerai Terdekat
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="payment-transfer-bank">
+                        <input type="radio" id="payment-transfer-bank" name="payment-method" value="Transfer Bank"> Transfer Bank
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="payment-alfamart-indomaret">
+                        <input type="radio" id="payment-alfamart-indomaret" name="payment-method" value="Alfamart/Indomaret"> Alfamart/Indomaret
+                    </label>
+                </div>
+            </form>
+        </section>
+        
+        <button class="confirm-button" onclick="handleConfirmation()">Konfirmasi</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

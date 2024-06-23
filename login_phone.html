@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login dengan Nomor Telepon - Toko Sepatu</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body onload="displayPhone()">
+    <header>
+        <h1><span class="butterfly">&#10084;</span> RIMBERIO OFFICIAL STORE <span class="butterfly">&#10084;</span></h1>
+    </header>
+    <div class="auth-container">
+        <section class="auth">
+            <h2>Login dengan Nomor Telepon</h2>
+            <form id="phone-login-form">
+                <label for="phone-number">Nomor Telepon:</label>
+                <input type="tel" id="phone-number" name="phone-number" required><br>
+                <button type="button" id="send-otp-button">Kirim OTP</button>
+                
+                <div id="otp-section" style="display: none;">
+                    <p>OTP telah dikirim ke nomor: <span id="userPhone"></span></p>
+                    <label for="otp">Masukkan OTP:</label><br>
+                    <div class="otp-container">
+                        <input type="text" id="otp-1" maxlength="1" class="otp-input" required>
+                        <input type="text" id="otp-2" maxlength="1" class="otp-input" required>
+                        <input type="text" id="otp-3" maxlength="1" class="otp-input" required>
+                        <input type="text" id="otp-4" maxlength="1" class="otp-input" required>
+                    </div>
+                    <button type="button" id="verify-otp-button">Masuk</button>
+                </div>
+            </form>
+        </section>
+    </div>
+
+    <script>
+        function displayPhone() {
+            const userPhone = getPhone();
+            if (userPhone) {
+                document.getElementById('userPhone').textContent = userPhone;
+            }
+        }
+
+        function getPhone() {
+            return localStorage.getItem('userPhone');
+        }
+
+        document.getElementById('send-otp-button').addEventListener('click', function() {
+            const phoneNumber = document.getElementById('phone-number').value;
+            if (phoneNumber) {
+                // Simpan nomor telepon di localStorage
+                localStorage.setItem('userPhone', phoneNumber);
+
+                // Tampilkan bagian OTP
+                document.getElementById('otp-section').style.display = 'block';
+                // Sembunyikan tombol kirim OTP
+                document.getElementById('send-otp-button').style.display = 'none';
+
+                // Simulasikan pengiriman OTP
+                alert('OTP telah dikirim ke nomor Anda.');
+                displayPhone(); // Panggil fungsi displayPhone untuk menampilkan nomor telepon
+            }
+        });
+
+        document.getElementById('verify-otp-button').addEventListener('click', function() {
+            const otp1 = document.getElementById('otp-1').value;
+            const otp2 = document.getElementById('otp-2').value;
+            const otp3 = document.getElementById('otp-3').value;
+            const otp4 = document.getElementById('otp-4').value;
+            const otp = otp1 + otp2 + otp3 + otp4;
+
+            if (otp === '1234') { // Misal OTP yang dikirim adalah '1234'
+                alert('Login berhasil!');
+                window.location.href = 'index.html';
+            } else {
+                alert('OTP salah. Silakan coba lagi.');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emo - Transfer</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault(); // Menghentikan aksi default form submission
+            
+            // Ambil nilai input dari form
+            const noRekening = document.getElementById('no-rekening').value;
+            const nominal = document.getElementById('nominal').value;
+            const jenisBank = document.getElementById('jenis-bank').value;
+            
+            // Simulasi proses transfer (di sini bisa dilakukan validasi atau interaksi dengan backend)
+            // Misalnya, kita akan menampilkan pesan transfer sukses dalam contoh ini
+            const detailTransfer = `Transfer sukses!<BR>Detail transfer:<br>
+                                    Nomor Rekening: ${noRekening}<br>
+                                    Nominal: Rp. ${nominal}<br>
+                                    Jenis Bank: ${jenisBank}`;
+            
+            // Menampilkan pesan transfer sukses
+            document.getElementById('transfer-status').innerHTML = detailTransfer;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h2>Transfer Emo</h2>
+        </header>
+        
+        <section class="transfer-form">
+            <h2>Form Transfer</h2>
+            <form onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label for="no-rekening">Nomor Rekening</label>
+                    <input type="text" id="no-rekening" name="no-rekening" required>
+                </div>
+                <div class="form-group">
+                    <label for="nominal">Nominal</label>
+                    <input type="text" id="nominal" name="nominal" required>
+                </div>
+                <div class="form-group">
+                    <label for="jenis-bank">Jenis Bank</label>
+                    <select id="jenis-bank" name="jenis-bank" required>
+                        <option value="">Pilih jenis bank</option>
+                        <option value="BCA">BCA</option>
+                        <option value="BNI">BNI</option>
+                        <option value="BRI">BRI</option>
+                        <option value="Mandiri">Mandiri</option>
+                        <option value="CIMB Niaga">CIMB Niaga</option>
+                    </select>
+                </div>
+                <button type="submit" class="confirm-button">Konfirmasi Transfer</button>
+            </form>
+        </section>
+        
+        <!-- Area untuk menampilkan status transfer -->
+        <div id="transfer-status" class="transfer-status"></div>
+        
+        <button class="confirm-button"  onclick="location.href='dana.html'">Kembali ke Halaman Utama</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

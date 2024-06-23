@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Toko Sepatu</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1><span class="butterfly">&#10084;</span> RIMBERIO OFFICIAL STORE <span class="butterfly">&#10084;</span></h1>
+    </header>
+    <div class="auth-container">
+        <section class="auth">
+            <h2>Masuk</h2>
+            <img src="logo1.jpg" alt="Deskripsi singkat tentang gambar" class="about-image">
+            <form id="login-form">
+                <label for="login-email">Email:</label>
+                <input type="email" id="login-email" name="login-email" required><br>
+                <label for="login-password">Kata Sandi:</label>
+                <input type="password" id="login-password" name="login-password" required><br>
+                <button type="submit">Masuk</button>
+            </form>
+            <p>Belum punya akun? <a href="register.html">Daftar di sini</a></p>
+            <div class="alternative-login">
+                <h3>Atau masuk dengan:</h3>
+                <button id="google-login">Login dengan Google</button><br>
+                <button id="phone-login" onclick="window.location.href='login_phone.html'">Login dengan Nomor Telepon</button>
+            </div>
+        </section>
+    </div>
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const email = document.getElementById('login-email').value;
+            localStorage.setItem('userEmail', email);
+            window.location.href = 'index.html';
+        });
+
+        document.getElementById('google-login').addEventListener('click', function() {
+            // Tambahkan logika autentikasi Google di sini
+            alert("Login dengan Google Belum di Dukung.");
+        });
+    </script>
+</body>
+</html>

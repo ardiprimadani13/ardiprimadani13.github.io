@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isi Pulsa & Lainnya</title>
+    <link rel="stylesheet" href="styles.css">
+    <a href="index.html" class="back-to-home">Kembali ke Beranda</a>
+    <style>
+            body, html {
+                margin: 0;
+                padding: 0;
+                height: 100%;
+                font-family: Arial, sans-serif;
+            }
+            .container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                text-align: center;
+                height: 100%;
+            }
+            .menu-buttons {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 15px; /* Gap antara tombol */
+            }
+            .menu-button {
+                cursor: pointer;
+                padding: 15px;
+                background-color: #007bff;
+                color: white;
+                border: none;
+                border-radius: 50%;
+                width: 90px;
+                height: 90px;
+                font-size: 14px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+            }
+            .menu-button:hover {
+                background-color: #0056b3;
+            }
+            .form-section {
+                display: none;
+                margin-top: 20px;
+            }
+            .form-section.active {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+            }
+            form {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                border: 1px solid #ccc;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            }
+            form label, form input, form select, form button {
+                margin: 10px 0;
+                width: 100%;
+                max-width: 300px;
+                padding: 10px;
+            }
+            form button {
+                background-color: #28a745;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+            }
+            form button:hover {
+                background-color: #218838;
+            }
+            header, footer {
+                text-align: center;
+                padding: 10px;
+                background-color: #a793f0;
+                width: 100%;
+            }
+            nav a {
+                margin: 0 10px;
+                text-decoration: none;
+                color: #007bff;
+            }
+            nav a:hover {
+                text-decoration: underline;
+            }
+            .options {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+                max-width: 600px;
+                padding: 20px;
+                background-color: #fff;
+                border: 1px solid #ccc;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            }
+            .option {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                transition: all 0.3s ease;
+            }
+            .option:hover {
+                transform: scale(1.05);
+                background-color: #f0f0f0;
+            }
+            .option .details {
+                margin-left: 10px;
+            }
+        </style>
+    <script>
+        function showForm(formId) {
+            var forms = document.querySelectorAll('.form-section');
+            forms.forEach(function(form) {
+                form.classList.remove('active');
+            });
+            document.getElementById(formId).classList.add('active');
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Isi Pulsa & Lainnya</h1>
+    </header>
+    <main class="container">
+        <div class="menu-buttons">
+            <button class="menu-button" onclick="showForm('isi-pulsa')">Isi Pulsa</button>
+            <button class="menu-button" onclick="showForm('token-listrik')">Token Listrik</button>
+            <button class="menu-button" onclick="showForm('voucher-game')">Voucher Game</button>
+            <button class="menu-button" onclick="showForm('kuota-data')">Kuota Data</button>
+        </div>
+        <section id="isi-pulsa" class="form-section">
+            <h2>Isi Pulsa</h2>
+            <form action="submit_pulsa.html" method="post" onsubmit="return handleSubmit()">
+                <label for="nomor-hp">Nomor HP:</label>
+                <input type="text" id="nomor-hp" name="nomor-hp" required>
+                
+                <label for="nominal-pulsa">Nominal Pulsa:</label>
+                <select id="nominal-pulsa" name="nominal-pulsa" required>
+                    <option value="5000">Rp5.000</option>
+                    <option value="10000">Rp10.000</option>
+                    <option value="20000">Rp20.000</option>
+                    <option value="50000">Rp50.000</option>
+                    <option value="100000">Rp100.000</option>
+                </select>
+                
+                <button type="submit">Isi Pulsa</button>
+            </form>
+            <p id="success-message" style="display: none; color: green; font-weight: bold;">Pulsa berhasil diisi!</p>
+        </section>        
+        <section id="token-listrik" class="form-section">
+            <h2>Token Listrik</h2>
+            <form action="submit_token.html" method="post" onsubmit="return handleSubmitToken(event)">
+                <label for="nomor-meter">Nomor Meter:</label>
+                <input type="text" id="nomor-meter" name="nomor-meter" required>
+                
+                <label for="nominal-token">Nominal Token:</label>
+                <select id="nominal-token" name="nominal-token" required>
+                    <option value="20000">Rp20.000</option>
+                    <option value="50000">Rp50.000</option>
+                    <option value="100000">Rp100.000</option>
+                    <option value="200000">Rp200.000</option>
+                </select>
+                
+                <button type="submit">Beli Token</button>
+            </form>
+            <p id="token-success-message" style="display: none; color: green; font-weight: bold;"></p>
+        </section>
+        <section id="voucher-game" class="form-section">
+            <h2>Voucher Game</h2>
+            <form action="submit_voucher.html" method="post">
+                <label for="id-game">ID Game:</label>
+                <input type="text" id="id-game" name="id-game" required>
+                
+                <label for="nominal-voucher">Nominal Voucher:</label>
+                <select id="nominal-voucher" name="nominal-voucher" required>
+                    <option value="10000">Rp10.000</option>
+                    <option value="50000">Rp50.000</option>
+                    <option value="100000">Rp100.000</option>
+                </select>
+                
+                <button type="submit">Beli Voucher</button>
+            </form>
+        </section>
+        <section id="kuota-data" class="form-section">
+            <h2>Kuota Data</h2>
+            <form action="submit_kuota.html" method="post" onsubmit="return handleSubmitKuota(event)">
+                <label for="nomor-hp-data">Nomor HP:</label>
+                <input type="text" id="nomor-hp-data" name="nomor-hp-data" required>
+                
+                <label for="nominal-kuota">Nominal Kuota:</label>
+                <div class="options">
+                    <div class="option" onclick="selectOption(10000)">
+                        <div class="amount">Rp10.000</div>
+                        <div class="details">(1GB)</div>
+                    </div>
+                    <div class="option" onclick="selectOption(25000)">
+                        <div class="amount">Rp25.000</div>
+                        <div class="details">(3GB)</div>
+                    </div>
+                    <div class="option" onclick="selectOption(50000)">
+                        <div class="amount">Rp50.000</div>
+                        <div class="details">(7GB)</div>
+                    </div>
+                    <div class="option" onclick="selectOption(100000)">
+                        <div class="amount">Rp100.000</div>
+                        <div class="details">(15GB)</div>
+                    </div>
+                </div>            
+                
+                <button type="submit">Beli Kuota</button>
+            </form>
+        </section>
+        <script>
+            function selectOption(amount) {
+                alert(`Anda memilih paket seharga Rp${amount}`);
+                // Tambahkan logika atau aksi sesuai kebutuhan Anda di sini
+            }
+
+            function handleSubmit() {
+                // Lakukan proses pengiriman data ke backend atau operasi lainnya di sini
+        
+                // Tampilkan pesan sukses setelah form berhasil di-submit
+                document.getElementById('success-message').style.display = 'block';
+        
+                // Kembalikan false untuk mencegah form melakukan submit yang sebenarnya
+                return false;
+            }
+
+            function handleSubmitToken(event) {
+                event.preventDefault(); // Mencegah pengiriman form secara default
+                
+                // Ambil nilai dari form Token Listrik
+                var nomorMeter = document.getElementById('nomor-meter').value;
+                var nominalToken = document.getElementById('nominal-token').value;
+    
+                // Tampilkan pesan token sukses diisi
+                var successMessage = document.getElementById('token-success-message');
+                successMessage.style.display = 'block';
+    
+                // Atur isi dari pesan sukses
+                successMessage.textContent = `Token berhasil diisi dengan nominal Rp${nominalToken}`;
+    
+                // Kosongkan nilai input setelah submit
+                document.getElementById('nomor-meter').value = '';
+                document.getElementById('nominal-token').value = '';
+    
+                // Kembalikan false untuk mencegah form melakukan submit yang sebenarnya
+                return false;
+            }
+
+            function handleSubmitKuota(event) {
+                event.preventDefault(); // Mencegah pengiriman form secara default
+                
+                // Ambil nilai dari form Kuota Data
+                var nomorHpData = document.getElementById('nomor-hp-data').value;
+                var nominalKuota = document.querySelector('.options .active .amount').textContent.trim();
+                var detailsKuota = document.querySelector('.options .active .details').textContent.trim();
+    
+                // Tampilkan pesan berhasil dengan nomor dan kuota yang dipilih
+                alert(`Kuota seharga ${nominalKuota} ${detailsKuota} berhasil dibeli untuk nomor ${nomorHpData}`);
+    
+                // Kosongkan nilai input setelah submit
+                document.getElementById('nomor-hp-data').value = '';
+    
+                // Kembalikan false untuk mencegah form melakukan submit yang sebenarnya
+                return false;
+            }
+
+            function showForm(formId) {
+                var forms = document.querySelectorAll('.form-section');
+                forms.forEach(function(form) {
+                    form.classList.remove('active');
+                });
+                document.getElementById(formId).classList.add('active');
+            }
+        </script>
+        
+    </main>
+</body>
+</html>

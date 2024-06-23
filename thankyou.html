@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You - Toko Sepatu</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .star-rating {
+            text-align: center;
+            font-size: 2rem;
+            direction: rtl;
+            unicode-bidi: bidi-override;
+        }
+        .star-rating input[type="radio"] {
+            display: none;
+        }
+        .star-rating label {
+            color: #ddd;
+            font-size: 2rem;
+            padding: 0 0.1rem;
+            cursor: pointer;
+        }
+        .star-rating input[type="radio"]:checked ~ label,
+        .star-rating label:hover,
+        .star-rating label:hover ~ label {
+            color: #f5b301;
+        }
+        #submit-button {
+            display: none;
+            margin-top: 1rem;
+        }
+        #thank-you-message {
+            display: none;
+            margin-top: 1rem;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><span class="butterfly">&#10084;</span> RIMBERIO OFFICIAL STORE <span class="butterfly">&#10084;</span></h1>
+        <nav>
+            <a href="index.html">Beranda</a>
+            <a href="checkout.html">Keranjang</a>
+            <a href="bantuan.html">Bantuan</a>
+            <a href="about.html">Tentang Kami</a>
+        </nav>
+    </header>
+    <section class="Terima Kasih">
+        <h2>Terima kasih atas pesanan Anda!</h2>
+        <p>Pesanan Anda telah berhasil dilakukan. Kami akan segera menghubungi Anda untuk mengkonfirmasi detail pengiriman.</p>
+        <div class="star-rating">
+            <input type="radio" id="5-stars" name="rating" value="5" />
+            <label for="5-stars" class="star">&#9733;</label>
+            <input type="radio" id="4-stars" name="rating" value="4" />
+            <label for="4-stars" class="star">&#9733;</label>
+            <input type="radio" id="3-stars" name="rating" value="3" />
+            <label for="3-stars" class="star">&#9733;</label>
+            <input type="radio" id="2-stars" name="rating" value="2" />
+            <label for="2-stars" class="star">&#9733;</label>
+            <input type="radio" id="1-star" name="rating" value="1" />
+            <label for="1-star" class="star">&#9733;</label>
+        </div>
+        <button id="submit-button">Kirim</button>
+        <p id="thank-you-message">Terima kasih atas pendapat Anda!</p>
+    </section>
+    <script>
+        const starInputs = document.querySelectorAll('.star-rating input');
+        const submitButton = document.getElementById('submit-button');
+        const thankYouMessage = document.getElementById('thank-you-message');
+
+        starInputs.forEach(input => {
+            input.addEventListener('change', () => {
+                submitButton.style.display = 'block';
+            });
+        });
+
+        submitButton.addEventListener('click', () => {
+            if (document.querySelector('.star-rating input:checked')) {
+                thankYouMessage.style.display = 'block';
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 2000); // Delay to show thank you message before redirecting
+            } else {
+                alert('Silakan pilih jumlah bintang sebelum mengirim.');
+            }
+        });
+    </script>
+</body>
+</html>

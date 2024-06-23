@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emo - Halaman Utama</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        #barcodeContainer img {
+            width: 100%;
+            max-width: 200px;
+            margin: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h2>Emo</h2>
+            <div class="saldo">Saldo: Rp. 100.000.000</div>
+        </header>
+        
+        <section class="transaction-history">
+            <h2>Riwayat Transaksi</h2>
+            <ul>
+                <li>Top-Up Rp. 50.000</li>
+                <li>Top-Up Rp. 50.000</li>
+                <li>Top-Up Rp. 900.000</li>
+                <li>Top-Up Rp. 1.000.000</li>
+                <li>Transfer Rp. 100.000</li>
+                <li>Top-Up Rp. 1.100.000</li>
+            </ul>
+        </section>
+        
+        <section class="actions">
+            <button onclick="location.href='topup.html'">Top-Up</button>
+            <button onclick="location.href='transfer.html'">Transfer</button>
+            <button onclick="showPaymentModal()">Bayar</button>
+            <button onclick="location.href='index.html'">Kembali</button>
+        </section>
+    </div>
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closePaymentModal()">&times;</span>
+            <h2>Pembayaran</h2>
+            <div id="barcodeContainer">
+                <h3>Scan Barcode untuk Pembayaran</h3>
+                <img src="bc.png" alt="Barcode Pembayaran">
+                <div>
+                    <label for="amount">Jumlah Pembayaran:</label>
+                    <input type="number" id="amount" name="amount" required>
+                </div>
+                <button onclick="confirmPayment()">Konfirmasi Pembayaran</button>
+                <p id="paymentDetails"></p>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Fungsi untuk menampilkan modal pembayaran
+        function showPaymentModal() {
+            document.getElementById('paymentModal').style.display = 'block';
+        }
+
+        // Fungsi untuk menutup modal pembayaran
+        function closePaymentModal() {
+            document.getElementById('paymentModal').style.display = 'none';
+        }
+
+        // Tutup modal ketika pengguna mengklik di luar modal
+        window.onclick = function(event) {
+            const modal = document.getElementById('paymentModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Fungsi untuk mengkonfirmasi pembayaran
+        function confirmPayment() {
+            const amount = document.getElementById('amount').value;
+            const barcode = document.querySelector('#barcodeContainer img').alt;
+
+            if (!amount) {
+                alert('Silakan masukkan jumlah pembayaran.');
+                return;
+            }
+
+            // Simpan data pembayaran ke dalam localStorage (atau bisa diproses lebih lanjut)
+            localStorage.setItem('paymentAmount', amount);
+            localStorage.setItem('barcode', barcode);
+
+            // Tampilkan jumlah pembayaran di modal
+            document.getElementById('paymentDetails').textContent = 'Jumlah yang harus dibayar: Rp ' + amount;
+
+            // Tampilkan pesan pembayaran berhasil
+            setTimeout(() => {
+                alert('Pembayaran berhasil! Jumlah: Rp ' + amount);
+                closePaymentModal();
+            }, 3000); // Simulasi waktu pembayaran
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
