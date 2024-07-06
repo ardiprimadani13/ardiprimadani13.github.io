@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hasil Formulir Pendaftaran</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+            .form-results {
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0,0,0,0.1);
+                margin-bottom: 20px;
+            }
+    
+            .form-results h2 {
+                color: #333;
+                font-size: 24px;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+    
+            .result-details {
+                margin-bottom: 20px;
+            }
+    
+            .result-details table {
+                width: 100%;
+                border-collapse: collapse;
+                table-layout: fixed; /* Membuat setiap kolom tabel memiliki lebar yang sama */
+            }
+    
+            .result-details th,
+            .result-details td {
+                padding: 8px;
+                border: 1px solid #ccc;
+                text-align: left;
+                word-wrap: break-word; /* Memastikan teks yang panjang di dalam sel tabel tidak melebihi lebar tabel */
+            }
+    
+            .result-details th {
+                background-color: #f2f2f2;
+            }
+    
+            .form-section {
+                text-align: center;
+                margin-top: 20px;
+            }
+    
+            .form-section button {
+                background-color: #4CAF50;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                cursor: pointer;
+                border-radius: 5px;
+                font-size: 16px;
+                transition: background-color 0.3s ease;
+            }
+    
+            .form-section button:hover {
+                background-color: #45a049;
+            }
+            /* Responsif untuk layar dengan lebar maksimum 600px */
+        @media screen and (max-width: 600px) {
+            .result-details th,
+            .result-details td {
+                font-size: 8px; /* Mengurangi ukuran font untuk teks dalam tabel */
+            }
+
+            .form-section button {
+                font-size: 10px; /* Mengurangi ukuran font untuk tombol */
+            }
+            .form-results h2 {
+                color: #333;
+                font-size: 15px;
+            }
+
+            .result-details h4 {
+                color: #333;
+                font-size: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="school-logo" onclick="toggleSidebar()">
+            <img src="logo.jpeg" alt="Logo Sekolah">
+            <h1>Khairul Ummah School</h1>
+        </div>
+        <h1>Selamat Datang</h1>
+    </header>
+    <main>
+        <section class="form-results">
+            <main>
+            <h2>Hasil Formulir Pendaftaran</h2>
+            <div class="result-details">
+                <h2> Data Siswa</h2>
+                <table>
+                    <tr>
+                        <th>Nama Lengkap</th>
+                        <td id="result-name"></td>
+                    </tr>
+                    <tr>
+                        <th>Jenis Kelamin</th>
+                        <td id="result-gender"></td>
+                    </tr>
+                    <tr>
+                        <th>Tempat Lahir</th>
+                        <td id="result-tempat-tanggal"></td>
+                    </tr>
+                    <tr>
+                        <th>Tanggal Lahir</th>
+                        <td id="result-tanggal-Lahir"></td>
+                    </tr>
+                    <tr>
+                        <th>Anak ke</th>
+                        <td id="result-anak-ke"></td>
+                    </tr>
+                    <tr>
+                        <th>Jenis Saudara</th>
+                        <td id="result-Jumlah-saudara-kandung"></td>
+                    </tr>
+                    <tr>
+                        <th>Alamat</th>
+                        <td id="result-alamat"></td>
+                    </tr>
+                    <tr>
+                        <th>Asal Sekolah</th>
+                        <td id="result-asal-sekolah"></td>
+                    </tr>
+                    <tr>
+                        <th>Masuk Ke Kelas</th>
+                        <td id="result-masuk-kelas"></td>
+                    </tr>
+                    </table>
+                    <br>
+                    <div class="result-details">
+                        <h2>Data Orang Tua/Wali</h2>
+                        <h4>A. Ayah</h4>
+                        <table>
+                            <tr>
+                                <th>Nama Ayah</th>
+                                <td id="result-nama_ayah"></td>
+                            </tr>
+                            <tr>
+                                <th>Tempat, Tanggal Lahir Ayah</th>
+                                <td id="result-ttl_ayah"></td>
+                            </tr>
+                            <tr>
+                                <th>Kewarganegaraan Ayah</th>
+                                <td id="result-kewarganegaraan_ayah"></td>
+                            </tr>
+                            <tr>
+                                <th>Agama Ayah</th>
+                                <td id="result-agama_ayah"></td>
+                            </tr>
+                            <tr>
+                                <th>Pendidikan Terakhir Ayah</th>
+                                <td id="result-pendidikan_ayah"></td>
+                            </tr>
+                            <tr>
+                                <th>Pekerjaan Ayah</th>
+                                <td id="result-pekerjaan_ayah"></td>
+                            </tr>
+                            <tr>
+                                <th>Alamat Tinggal Ayah</th>
+                                <td id="result-alamat_ayah"></td>
+                            </tr>
+                            <tr>
+                                <th>No. Telp./HP Ayah</th>
+                                <td id="result-no_telpon_ayah"></td>
+                            </tr>
+                            <tr>
+                                <th>Penghasilan/bulan Ayah</th>
+                                <td id="result-penghasilan_ayah"></td>
+                            </tr>
+                            <tr>
+                                <th>Email Ayah</th>
+                                <td id="result-email_ayah"></td>
+                            </tr>
+                        </table>
+                
+                        <h4>B. Ibu</h4>
+                        <table>
+                            <tr>
+                                <th>Nama Ibu</th>
+                                <td id="result-nama_ibu"></td>
+                            </tr>
+                            <tr>
+                                <th>Tempat, Tanggal Lahir Ibu</th>
+                                <td id="result-ttl_ibu"></td>
+                            </tr>
+                            <tr>
+                                <th>Kewarganegaraan Ibu</th>
+                                <td id="result-kewarganegaraan_ibu"></td>
+                            </tr>
+                            <tr>
+                                <th>Agama Ibu</th>
+                                <td id="result-agama_ibu"></td>
+                            </tr>
+                            <tr>
+                                <th>Pendidikan Terakhir Ibu</th>
+                                <td id="result-pendidikan_ibu"></td>
+                            </tr>
+                            <tr>
+                                <th>Pekerjaan Ibu</th>
+                                <td id="result-pekerjaan_ibu"></td>
+                            </tr>
+                            <tr>
+                                <th>Alamat Tinggal Ibu</th>
+                                <td id="result-alamat_ibu"></td>
+                            </tr>
+                            <tr>
+                                <th>No. Telp./HP Ibu</th>
+                                <td id="result-no_telpon_ibu"></td>
+                            </tr>
+                            <tr>
+                                <th>Penghasilan/bulan Ibu</th>
+                                <td id="result-penghasilan_ibu"></td>
+                            </tr>
+                            <tr>
+                                <th>Email Ibu</th>
+                                <td id="result-email_ibu"></td>
+                            </tr>
+                        </table>
+                    </div>                
+                    <h2> Data Wali Siswa</h2>
+                    <table>
+                    <tr>
+                        <th>Nama Orangtua</th>
+                        <td id="result-nama-orangtua"></td>
+                    </tr>
+                    <tr>
+                        <th>Pendidikan Orangtua</th>
+                        <td id="result-pendidikan-orangtua"></td>
+                    </tr>
+                    <tr>
+                        <th>Pekerjaan Orangtua</th>
+                        <td id="result-pekerjaan-orangtua"></td>
+                    </tr>
+                    <tr>
+                        <th>Alamat Orangtua</th>
+                        <td id="result-alamat-orangtua"></td>
+                    </tr>
+                    <tr>
+                        <th>Nomor Telp/HP Orangtua</th>
+                        <td id="result-nomor-telp-orangtua"></td>
+                    </tr>
+                    </table><br>
+                    <table>
+                    </tr>
+                </table>
+            </main>
+            <div class="form-section">
+                <form action="beranda.html" method="get">
+                    <button type="submit">Kirim</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <br>
+
+    <script>
+        // Ambil nilai dari URL query string
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        // Tampilkan hasil dari query string ke elemen yang
+        document.getElementById('result-name').textContent = urlParams.get('nama');
+        document.getElementById('result-gender').textContent = urlParams.get('jenis_kelamin');
+        document.getElementById('result-tempat-tanggal').textContent = urlParams.get('tempat_tanggal_lahir');
+        document.getElementById('result-anak-ke').textContent = urlParams.get('anak_ke');
+        document.getElementById('result-Jumlah-saudara-kandung').textContent = urlParams.get('Jumlah_saudara_kandung');
+        document.getElementById('result-alamat').textContent = urlParams.get('alamat');
+        document.getElementById('result-asal-sekolah').textContent = urlParams.get('asal_sekolah');
+        document.getElementById('result-masuk-kelas').textContent = urlParams.get('masuk_kelas');
+        document.getElementById('result-nama-orangtua').textContent = urlParams.get('nama_orangtua');
+        document.getElementById('result-pendidikan-orangtua').textContent = urlParams.get('pendidikan_orangtua');
+        document.getElementById('result-pekerjaan-orangtua').textContent = urlParams.get('pekerjaan_orangtua');
+        document.getElementById('result-alamat-orangtua').textContent = urlParams.get('alamat_orangtua');
+        document.getElementById('result-nomor-telp-orangtua').textContent = urlParams.get('nomor_telp_orangtua');
+        document.getElementById('result-tanggal-Lahir').textContent = urlParams.get('tanggal_lahir');
+        document.getElementById('result-nama_ayah').textContent = urlParams.get('nama_ayah');
+        document.getElementById('result-ttl_ayah').textContent = urlParams.get('ttl_ayah');
+        document.getElementById('result-kewarganegaraan_ayah').textContent = urlParams.get('kewarganegaraan_ayah');
+        document.getElementById('result-agama_ayah').textContent = urlParams.get('agama_ayah');
+        document.getElementById('result-pendidikan_ayah').textContent = urlParams.get('pendidikan_ayah');
+        document.getElementById('result-pekerjaan_ayah').textContent = urlParams.get('pekerjaan_ayah');
+        document.getElementById('result-alamat_ayah').textContent = urlParams.get('alamat_ayah');
+        document.getElementById('result-no_telpon_ayah').textContent = urlParams.get('no_telpon_ayah');
+        document.getElementById('result-email_ayah').textContent = urlParams.get('email_ayah');
+        document.getElementById('result-penghasilan_ayah').textContent = urlParams.get('penghasilan_ayah');
+
+        document.getElementById('result-nama_ibu').textContent = urlParams.get('nama_ibu');
+        document.getElementById('result-ttl_ibu').textContent = urlParams.get('ttl_ibu');
+        document.getElementById('result-kewarganegaraan_ibu').textContent = urlParams.get('kewarganegaraan_ibu');
+        document.getElementById('result-agama_ibu').textContent = urlParams.get('agama_ibu');
+        document.getElementById('result-pendidikan_ibu').textContent = urlParams.get('pendidikan_ibu');
+        document.getElementById('result-pekerjaan_ibu').textContent = urlParams.get('pekerjaan_ibu');
+        document.getElementById('result-alamat_kantor_ibu').textContent = urlParams.get('alamat_kantor_ibu');
+        document.getElementById('result-no_telpon_ibu').textContent = urlParams.get('no_telpon_ibu');
+        document.getElementById('result-email_ibu').textContent = urlParams.get('email_ibu');
+        document.getElementById('result-penghasilan_ibu').textContent = urlParams.get('penghasilan_ibu');
+</script>
+</body>
+</html>

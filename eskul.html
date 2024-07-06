@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eskul - Pondok Pesantren</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="school-logo" onclick="toggleSidebar()">
+            <img src="logo.jpeg" alt="Logo Sekolah">
+            <h1>Khairul Ummah School</h1>
+        </div>
+    </header>
+    <button class="btn-back" onclick="window.history.back()">Kembali</button><br>
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Eskul Section -->
+        <section class="eskul">
+            <h2>Daftar Ekstrakurikuler</h2>
+            <table class="eskul-table">
+                <thead>
+                    <tr>
+                        <th>Nama Eskul</th>
+                        <th>Waktu</th>
+                        <th>Penanggung Jawab</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Pramuka</td>
+                        <td>Senin, 15:00 - 17:00</td>
+                        <td>Bapak Joko</td>
+                    </tr>
+                    <tr>
+                        <td>Paskibra</td>
+                        <td>Selasa, 15:00 - 17:00</td>
+                        <td>Ibu Sari</td>
+                    </tr>
+                    <tr>
+                        <td>Futsal</td>
+                        <td>Rabu, 15:00 - 17:00</td>
+                        <td>Bapak Rudi</td>
+                    </tr>
+                    <tr>
+                        <td>Basket</td>
+                        <td>Kamis, 15:00 - 17:00</td>
+                        <td>Ibu Lina</td>
+                    </tr>
+                    <tr>
+                        <td>PMR</td>
+                        <td>Jumat, 15:00 - 17:00</td>
+                        <td>Bapak Agus</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Penanggung Jawab Section -->
+            <div class="penanggung-jawab">
+                <div class="circle">
+                    <img src="murid1.jpg" alt="Pak Ahmad">
+                    <p>Pak Ahmad</p>
+                </div>
+                <div class="circle">
+                    <img src="murid2.jpg" alt="Bu Siti">
+                    <p>Bu Siti</p>
+                </div>
+                <div class="circle">
+                    <img src="murid3.jpg" alt="Pak Budi">
+                    <p>Pak Budi</p>
+                </div>
+                <div class="circle">
+                    <img src="murid4.jpg" alt="Bu Rina">
+                    <p>Bu Rina</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Link ke file JavaScript -->
+    <script src="scripts.js"></script>
+</body>
+</html>

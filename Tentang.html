@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang Kami</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="school-logo" onclick="toggleSidebar()">
+            <img src="logo.jpeg" alt="Logo Sekolah">
+            <h1>Khairul Ummah School</h1>
+        </div>
+        <h1>Selamat Datang</h1>
+    </header>
+
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar">
+        <img src="logo.jpeg" alt="Logo Sekolah" class="sidebar-logo">
+        <a href="javascript:void(0)" class="closebtn" onclick="toggleMenu()">&times;</a>
+        <a href="profil.html" class="MYPROFIL">MY PROFIL</a>
+        <a href="formulir.html">Pendaftaran</a>
+        <a href="eskul.html">Eskul</a>
+        <a href="organisasi.html">organisasi</a>
+        <a href="pengaturan.html">Pengaturan</a>
+        <a href="#" onclick="logout()">Logout</a>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="beranda.html">Beranda</a></li>
+            <li><a href="pengumuman.html">Pengumuman</a></li>
+            <li><a href="tentang.html">Tentang Kami</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h1 style="text-align: center;">Tentang Sekolah</h1>
+        <section class="about-us">
+            <div class="column with-image">
+                <div class="text-content">
+                    <h2>Sejarah Sekolah</h2>
+                    <div class="image-container">
+                        <img src="sekolah.jpg" alt="Sejarah Sekolah">
+                    </div>
+                    <p>Sekolah kami didirikan pada tahun 1990 dengan visi memberikan pendidikan terbaik untuk semua siswa. Kami telah berkembang dari sekolah kecil menjadi institusi pendidikan yang diakui di seluruh negeri.</p>
+                </div>
+            </div>
+            <div class="vision-mission">
+                <div class="vision">
+                    <h2>Visi</h2>
+                    <p>Menjadi lembaga pendidikan yang unggul dan berkualitas, menghasilkan lulusan yang berakhlak mulia dan berprestasi tinggi.</p>
+                </div>
+                <div class="mission">
+                    <h2>Misi</h2>
+                    <p>Misi kami adalah menyediakan pendidikan berkualitas tinggi yang mempersiapkan siswa untuk menjadi pemimpin masa depan. Kami fokus pada pengembangan intelektual, fisik, dan emosional siswa kami.</p>
+                </div>
+            </div>
+            <div class="column">
+                <h2>Tim Pengajar</h2>
+                <p>Tim pengajar kami terdiri dari para profesional yang berdedikasi dan berpengalaman di bidang pendidikan. Mereka tidak hanya mengajar, tetapi juga membimbing dan menginspirasi siswa untuk mencapai potensi penuh mereka.</p>
+            </div>
+            <div class="column">
+                <h2>Fasilitas</h2>
+                <div class="facility">
+                    <div class="column">
+                    <div class="facility-content">
+                        <div class="image-container">
+                            <img src="lab.jpg" alt="Laboratorium Sains">
+                        </div>
+                        <div class="text-content">
+                            <h3>Laboratorium Sains</h3>
+                            <p>Kami memiliki laboratorium sains lengkap untuk eksperimen dan penelitian ilmiah siswa.</p>
+                        </div>
+                    </div> 
+                    </div>
+                    <div class="column">
+                    <div class="facility-content">
+                        <div class="image-container">
+                            <img src="ruang1.jpeg" alt="Ruang Kelas">
+                        </div>
+                        <div class="text-content">
+                            <h3>Ruang Kelas</h3>
+                            <p>Fasilitas ruang kelas yang nyaman dan dilengkapi dengan teknologi modern untuk mendukung pembelajaran siswa.</p>
+                        </div>
+                    </div> 
+                </div>              
+                <div class="column">    
+                    <div class="facility-content">
+                        <div class="image-container">
+                            <img src="lapangan.jpg" alt="Lapangan Olahraga">
+                        </div>
+                        <div class="text-content">
+                            <h3>Lapangan Olahraga</h3>
+                            <p>Lapangan olahraga kami dilengkapi dengan fasilitas modern untuk kegiatan fisik dan olahraga siswa.</p>
+                        </div>
+                    </div>
+                </div>    
+                </div>           
+        </section>
+    </main>
+    <script src="scripts.js"></script>
+    <footer>
+        <p>&copy; 2024 Aplikasi Sekolah. Semua Hak Dilindungi.</p>
+    </footer>
+</body>
+</html>

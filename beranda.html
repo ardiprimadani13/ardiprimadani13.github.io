@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi Sekolah</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <div class="school-logo" onclick="toggleSidebar()">
+            <img src="logo.jpeg" alt="Logo Sekolah">
+            <h1>Khairul Ummah School</h1>
+        </div>
+        <h1>Selamat Datang</h1>
+    </header>
+
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar">
+        <img src="logo.jpeg" alt="Logo Sekolah" class="sidebar-logo">
+        <a href="javascript:void(0)" class="closebtn" onclick="toggleMenu()">&times;</a>
+        <a href="profil.html" class="MYPROFIL">MY PROFIL</a>
+        <a href="formulir.html">Pendaftaran</a>
+        <a href="eskul.html">Eskul</a>
+        <a href="organisasi.html">organisasi</a>
+        <a href="pengaturan.html">Pengaturan</a>
+        <a href="#" onclick="logout()">Logout</a>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="beranda.html">Beranda</a></li>
+            <li><a href="pengumuman.html">Pengumuman</a></li>
+            <li><a href="Tentang.html">Tentang Kami</a></li>
+        </ul>
+    </nav>
+
+    <div class="slideshow-container">
+        <!-- Slideshow images -->
+        <div class="mySlides fade">
+            <img src="1.jpg" alt="Slide 1">
+        </div>
+        <div class="mySlides fade">
+            <img src="2.jpg" alt="Slide 2">
+        </div>
+        <div class="mySlides fade">
+            <img src="3.jpg" alt="Slide 3">
+        </div>
+        <div class="mySlides fade">
+            <img src="4.jpg" alt="Slide 4">
+        </div>
+    </div>
+
+    <div class="news-container">
+        <h1>Berita Terkini</h1>
+        <div class="news-item">
+            <img src="berita1.jpeg" alt="Berita 1">
+            <div class="text">
+                <h3>Gotong Royong</h3>
+                <p>Ini adalah cuplikan singkat dari berita terbaru yang sedang berlangsung di sekolah kita.</p>
+            </div>
+        </div>
+        <div class="news-item">
+            <img src="berita2.JPG" alt="Berita 2">
+            <div class="text">
+                <h3>Ujian Sekolah</h3>
+                <p>Informasi terbaru tentang kegiatan siswa dan perkembangan terbaru di sekolah kita.</p>
+            </div>
+        </div>
+    </div>
+    <h1 class="judul">Santri Berprestasi</h1>
+<div class="cerdas-container">
+    <div class="cerdas-item">
+        <img src="murid1.jpg" alt="Murid 1">
+        <p>Nama Murid 1</p>
+    </div>
+    <div class="cerdas-item">
+        <img src="murid2.jpg" alt="Murid 2">
+        <p>Nama Murid 2</p>
+    </div>
+    <div class="cerdas-item">
+        <img src="murid3.jpg" alt="Murid 3">
+        <p>Nama Murid 3</p>
+    </div>
+    <div class="cerdas-item">
+        <img src="murid4.jpg" alt="Murid 4">
+        <p>Nama Murid 4</p>
+    </div>
+</div>
+<div class="video-container">
+    <h2>Video Inspiratif</h2>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+</div>
+<div class="library-container">
+    <h2>Perpustakaan</h2>
+    <div class="library-item">
+        <div class="library-text">
+            <p>Perpustakaan di pondok pesantren sudah ada sejak zaman dahulu, terutama di pesantren-pesantren besar di Indonesia. Tradisi membaca dan menulis merupakan bagian integral dari pendidikan di pesantren, yang berakar dari tradisi Islam yang menghargai ilmu pengetahuan.</p>
+        </div>
+        <img src="perpustakaan.jpeg" alt="Perpustakaan">
+    </div>
+</div>
+ <!-- Eskul Section -->
+ <div class="eskul-container">
+    <h2>Ekstrakurikuler Baru</h2>
+    <div class="eskul-item">
+        <img src="pramuka.jpg" alt="Pramuka">
+        <div class="eskul-text">
+            <h3>Pramuka</h3>
+            <p>Pramuka adalah kegiatan ekstrakurikuler yang bertujuan untuk membentuk karakter, keterampilan, dan kemandirian siswa.</p>
+        </div>
+    </div>
+    <div class="eskul-item">
+        <img src="paskibra.jpg" alt="Paskibra">
+        <div class="eskul-text">
+            <h3>Paskibra</h3>
+            <p>Paskibra adalah kegiatan ekstrakurikuler yang melatih siswa dalam disiplin, tanggung jawab, dan kepemimpinan.</p>
+        </div>
+    </div>
+   
+    <script src="scripts.js"></script>
+
+    <footer>
+        <p>&copy; 2024 Aplikasi Sekolah</p>
+    </footer>
+</body>
+</html>

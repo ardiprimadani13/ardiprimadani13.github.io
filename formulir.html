@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulir Pendaftaran Sekolah Pondok Pesantren</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        form main {
+            margin-bottom: 20px;
+        }
+        
+        form label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        
+        form input[type="text"],
+        form input[type="number"],
+        form input[type="date"],
+        form input[type="tel"],
+        form select,
+        form textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        
+        form textarea {
+            resize: vertical;
+        }
+        
+        form button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        form button:hover {
+            background-color: #45a049;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 600px) {
+            header .logo img {
+                max-width: 40px;
+            }
+        
+            header nav ul {
+                flex-direction: column;
+            }
+        
+            header nav ul li {
+                margin: 5px 0;
+            }
+        
+            .main {
+                padding: 10px;
+            }
+        }
+    </style>
+    <script>
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+
+            const form = event.target;
+            const filesInput = document.getElementById('documents');
+            const fileNames = Array.from(filesInput.files).map(file => file.name).join(',');
+
+            const hiddenInput = document.createElement('input');
+            hiddenInput.type = 'hidden';
+            hiddenInput.name = 'fileNames';
+            hiddenInput.value = fileNames;
+            form.appendChild(hiddenInput);
+
+            form.submit();
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="school-logo" onclick="toggleSidebar()">
+            <img src="logo.jpeg" alt="Logo Sekolah">
+            <h1>Khairul Ummah School</h1>
+        </div>
+        <h1>Selamat Datang</h1>
+    </header>
+    <button class="btn-back" onclick="window.history.back()">Kembali</button><br>
+    <main>
+        <section class="form-section">
+            <h2>Formulir Pendaftaran Sekolah Pondok Pesantren</h2>
+            <form action="form_result.html" method="get" onsubmit="handleFormSubmit(event)">
+                <main>
+                <h3>I. Identitas Siswa</h3>
+                    <label for="nama">Nama:</label>
+                    <input type="text" id="nama" name="nama" required>
+                
+                    <label for="jenis_kelamin">Jenis Kelamin:</label>
+                    <select id="jenis_kelamin" name="jenis_kelamin" required>
+                        <option value="Laki-laki">Laki-laki</option>
+                        <option value="Perempuan">Perempuan</option>
+                    </select>
+                
+                    <label for="tempat_tanggal_lahir">Tempat Lahir:</label>
+                    <input type="text" id="tempat_tanggal_lahir" name="tempat_tanggal_lahir" required>
+
+                    <label>Tanggal Lahir,</label>
+                    <input type="date" id="tanggal_lahir" name="tanggal_lahir" required>
+                
+                    <label for="anak_ke">Anak ke:</label>
+                    <input type="number" id="anak_ke" name="anak_ke" required>
+                
+                    <label for="Jumlah_saudara_kandung">Jumlah saudara kandung:</label>
+                    <input type="number" id="Jumlah_saudara_kandung" name="Jumlah_saudara_kandung" required>
+                
+                    <label for="alamat">Alamat:</label>
+                    <textarea id="alamat" name="alamat" rows="4" required></textarea>
+                
+                    <label for="asal_sekolah">Asal Sekolah:</label>
+                    <input type="text" id="asal_sekolah" name="asal_sekolah" required>
+                
+                    <label for="masuk_kelas">Masuk Ke Kelas:</label>
+                    <input type="text" id="masuk_kelas" name="masuk_kelas" required>
+                    
+                </main>
+                <main>
+                <h2>DATA ORANG TUA/WALI</h2>
+            <h3>A. Ayah</h3>
+            <label for="nama_ayah">Nama Ayah:</label>
+            <input type="text" id="nama_ayah" name="nama_ayah" required>
+
+            <label for="ttl_ayah">Tempat, tanggal lahir Ayah:</label>
+            <input type="text" id="ttl_ayah" name="ttl_ayah" placeholder="Contoh: Jakarta, 1 Januari 1970" required>
+
+            <label for="kewarganegaraan_ayah">Kewarganegaraan Ayah:</label>
+            <input type="text" id="kewarganegaraan_ayah" name="kewarganegaraan_ayah" required>
+
+            <label for="agama_ayah">Agama Ayah:</label>
+            <input type="text" id="agama_ayah" name="agama_ayah" required>
+
+            <label for="pendidikan_ayah">Pendidikan terakhir Ayah:</label>
+            <input type="text" id="pendidikan_ayah" name="pendidikan_ayah" required>
+
+            <label for="pekerjaan_ayah">Pekerjaan Ayah:</label>
+            <input type="text" id="pekerjaan_ayah" name="pekerjaan_ayah" required>
+
+            <label for="alamat_ayah">Alamat Tinggal Ayah:</label>
+            <textarea id="alamat_ayah" name="alamat_ayah" rows="4" required></textarea>
+
+            <label for="no_telpon_ayah">No. Telp./HP Ayah:</label>
+            <input type="tel" id="no_telpon_ayah" name="no_telpon_ayah">
+
+            <label for="penghasilan_ayah">Penghasilan/bulan Ayah:</label>
+            <input type="text" id="penghasilan_ayah" name="penghasilan_ayah">
+
+            <label for="email_ayah">Email Ayah:</label>
+            <input type="email" id="email_ayah" name="email_ayah">
+
+            <h3>B. Ibu</h3>
+            <label for="nama_ibu">Nama Ibu:</label>
+            <input type="text" id="nama_ibu" name="nama_ibu" required>
+
+            <label for="ttl_ibu">Tempat, tanggal lahir Ibu:</label>
+            <input type="text" id="ttl_ibu" name="ttl_ibu" placeholder="Contoh: Jakarta, 1 Januari 1975" required>
+
+            <label for="kewarganegaraan_ibu">Kewarganegaraan Ibu:</label>
+            <input type="text" id="kewarganegaraan_ibu" name="kewarganegaraan_ibu" required>
+
+            <label for="agama_ibu">Agama Ibu:</label>
+            <input type="text" id="agama_ibu" name="agama_ibu" required>
+
+            <label for="pendidikan_ibu">Pendidikan terakhir Ibu:</label>
+            <input type="text" id="pendidikan_ibu" name="pendidikan_ibu" required>
+
+            <label for="pekerjaan_ibu">Pekerjaan Ibu:</label>
+            <input type="text" id="pekerjaan_ibu" name="pekerjaan_ibu" required>
+
+            <label for="alamat_kantor_ibu">Alamat Kantor Ibu:</label>
+            <textarea id="alamat_kantor_ibu" name="alamat_kantor_ibu" rows="4"></textarea>
+
+            <label for="penghasilan_ibu">Penghasilan/bulan Ibu:</label>
+            <input type="text" id="penghasilan_ibu" name="penghasilan_ibu">
+
+            <label for="no_telpon_ibu">No. Telp./HP Ibu:</label>
+            <input type="tel" id="no_telpon_ibu" name="no_telpon_ibu">
+
+            <label for="email_ibu">Email Ibu:</label>
+            <input type="email" id="email_ibu" name="email_ibu">
+            </main>
+                    <main>
+                <h3>II. Identitas Wali</h3>
+                    <label for="nama_orangtua">Nama Orangtua:</label>
+                    <input type="text" id="nama_orangtua" name="nama_orangtua" required>
+                
+                    <label for="pendidikan_orangtua">Pendidikan Orangtua:</label>
+                    <input type="text" id="pendidikan_orangtua" name="pendidikan_orangtua" required>
+                
+                    <label for="pekerjaan_orangtua">Pekerjaan Orangtua:</label>
+                    <input type="text" id="pekerjaan_orangtua" name="pekerjaan_orangtua" required>
+                
+                    <label for="alamat_orangtua">Alamat Orangtua:</label>
+                    <textarea id="alamat_orangtua" name="alamat_orangtua" rows="4" required></textarea>
+                
+                    <label for="nomor_telp_orangtua">Nomor Tlp/HP Orangtua:</label>
+                    <input type="tel" id="nomor_telp_orangtua" name="nomor_telp_orangtua" required>
+
+                    <label for="documents">Unggah Dokumen Ijazah:</label>
+                    <input type="file" id="documents" name="documents" multiple required>
+
+                <button type="submit">Daftar</button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

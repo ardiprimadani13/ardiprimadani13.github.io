@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengumuman</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<header>
+    <div class="school-logo" onclick="toggleSidebar()">
+        <img src="logo.jpeg" alt="Logo Sekolah">
+        <h1>Khairul Ummah School</h1>
+    </div>
+    <h1>Selamat Datang</h1>
+</header>
+
+<!-- Sidebar -->
+<div id="sidebar" class="sidebar">
+    <img src="logo.jpeg" alt="Logo Sekolah" class="sidebar-logo">
+        <a href="javascript:void(0)" class="closebtn" onclick="toggleMenu()">&times;</a>
+        <a href="profil.html" class="MYPROFIL">MY PROFIL</a>
+        <a href="formulir.html">Pendaftaran</a>
+        <a href="eskul.html">Eskul</a>
+        <a href="organisasi.html">organisasi</a>
+        <a href="pengaturan.html">Pengaturan</a>
+        <a href="#" onclick="logout()">Logout</a>
+</div>
+
+<nav>
+    <ul>
+        <li><a href="beranda.html">Beranda</a></li>
+        <li><a href="pengumuman.html">Pengumuman</a></li>
+        <li><a href="Tentang.html">Tentang Kami</a></li>
+    </ul>
+</nav>
+<body>
+    <h1 style="text-align: center;">Pengumuman</h1>
+    <div class="announcement-container">
+        <div class="announcement">
+            <h2>Pengumuman 1</h2>
+            <p>Ini adalah pengumuman pertama.</p>
+            <p class="announcement-date">Tanggal: 5 Juli 2024</p>
+        </div>
+        <div class="announcement">
+            <h2>Pengumuman 2</h2>
+            <p>Ini adalah pengumuman kedua.</p>
+            <p class="announcement-date">Tanggal: 5 Juli 2024</p>
+        </div>
+        <div class="announcement">
+            <h2>Pengumuman 3</h2>
+            <p>Ini adalah pengumuman ketiga.</p>
+            <p class="announcement-date">Tanggal: 5 Juli 2024</p>
+        </div>
+    <script src="scripts.js"></script>
+</body>
+</html>

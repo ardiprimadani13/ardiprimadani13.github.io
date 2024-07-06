@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Siswa - Pondok Pesantren</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="school-logo" onclick="toggleSidebar()">
+            <img src="logo.jpeg" alt="Logo Sekolah">
+            <h1>Khairul Ummah School</h1>
+        </div>
+    </header>
+    <button class="btn-back" onclick="window.history.back()">Kembali</button><br>
+    <!-- Tombol Kembali -->
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Profil Section -->
+        <section class="profil">
+            <h2>Profil Siswa</h2>
+            <div class="profil-details">
+                <div class="profil-image">
+                    <img id="preview-image" src="profil.jpg" alt="Preview Image">
+                </div>
+                <table class="profil-table">
+                    <tr>
+                        <td><strong>Nama:</strong></td>
+                        <td id="name">-</td>
+                    </tr>
+                    <tr>
+                        <td><strong>NIS:</strong></td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kelas:</strong></td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Eskul:</strong></td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Email:</strong></td>
+                        <td id="email">-</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+            if (loggedInUser) {
+                document.getElementById('email').textContent = loggedInUser.email;
+                document.getElementById('name').textContent = loggedInUser.name;
+            }
+        });
+    </script>
+    <!-- Link ke file JavaScript -->
+    <script src="scripts.js"></script>
+</body>
+</html>

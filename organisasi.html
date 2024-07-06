@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Struktur Organisasi Pondok Pesantren Modern Darul Istiqamah</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('latar.jpg'); /* Menambahkan background gambar */
+            background-size: cover; /* Mengatur agar gambar background menutupi seluruh halaman */
+            background-position: center; /* Posisi gambar background di tengah-tengah halaman */
+            background-repeat: no-repeat; /* Mencegah pengulangan gambar */
+            color: white; /* Warna teks */
+            overflow: hidden; /* Untuk menghindari scroll saat animasi salju */
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1; /* Agar struktur tetap di atas salju */
+        }
+        .box {
+            border: 1px solid #2bd11f;
+            display: inline-block;
+            padding: 10px;
+            margin: 10px;
+            min-width: 150px;
+            position: relative;
+            background-color: rgba(0, 0, 0, 0.5); /* Transparansi pada kotak */
+        }
+        .arrow-down {
+            width: 0; 
+            height: 0; 
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid #2bd11f;
+            margin: 0 auto;
+            position: relative;
+            top: 20px; /* Adjusted value to move the arrow down */
+        }
+        .line-connector {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            width: 100%;
+            margin: 10px 0;
+        }
+        .line-connector:before, .line-connector:after {
+            content: '';
+            position: absolute;
+            border-top: 1px solid #2bd11f;
+            width: 50%;
+            top: 0;
+        }
+        .line-connector:before {
+            left: 0;
+        }
+        .line-connector:after {
+            right: 0;
+        }
+        /* Gaya untuk elemen salju */
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            background-color: white;
+            border-radius: 50%;
+            opacity: 0.8;
+            pointer-events: none; /* Salju tidak menghalangi interaksi */
+            animation: fall linear infinite;
+        }
+
+        /* Animasi salju turun */
+        @keyframes fall {
+            to {
+                transform: translateY(300vh); /* Turun ke bawah layar */
+            }
+        }
+
+        /* Styles for 600px Screen Width */
+        @media only screen and (max-width: 600px) {
+
+            body {
+                font-family: Arial, sans-serif;
+                background-image: url('latar.jpg'); /* Menambahkan background gambar */
+                background-size:750%; /* Mengatur agar gambar background menutupi seluruh halaman */
+                background-position: center; /* Posisi gambar background di tengah-tengah halaman */
+                background-repeat: no-repeat; /* Mencegah pengulangan gambar */
+                color: white; /* Warna teks */
+                overflow: hidden; /* Untuk menghindari scroll saat animasi salju */
+            }
+
+            .container {
+                width: 100%; /* Make the container width 100% */
+                margin: 0 auto;
+                text-align: center;
+                position: relative;
+                z-index: 1; /* Ensure structure remains above snow */
+                font-size: small;
+            }
+        
+            .box {
+                min-width: 60px; /* Slightly increase the minimum width */
+                padding: 5px; /* Adjust the padding */
+                margin: 5px; /* Adjust the margin */
+                font-size: 0.2em; /* Smaller font size */
+            }
+        
+            .arrow-down {
+                border-left: 5px solid transparent;
+                border-right: 5px solid transparent;
+                border-top: 5px solid #2bd11f;
+                top: 10px; /* Adjusted value to move the arrow down */
+            }
+        
+            .line-connector:before, .line-connector:after {
+                width: 40%; /* Adjust the width */
+            }
+        
+            .snowflake {
+                width: 6px; /* Adjust the size */
+                height: 6px; /* Adjust the size */
+                animation-duration: 6s; /* Adjust the animation duration */
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Struktur Kepondokan Pesantren Terpadu Khairul Ummah</h1>
+        <h2>Provinsi DKI JAKARTA</h2>
+
+        <div class="box">
+            Pimpinan Pondok<br>Umi Hj. Haryanti
+            <div class="arrow-down"></div>
+        </div>
+        <div class="line">
+            <div class="line-vertical"></div>
+            <div class="box">
+                Pengasuh<br>KH. Oman Syahroni
+                <div class="arrow-down"></div>
+            </div>
+        </div>
+
+        <div class="line-connector">
+            <div class="line-vertical"></div>
+        </div>
+        <div class="line">
+            <div class="box">
+                Penasehat Sekolah<br>Nur Zabidi, S.Pd
+                <div class="arrow-down"></div>
+            </div>
+            <div class="box">
+                Kepala MTs<br>Wahyudin, M.Pd.I
+                <div class="arrow-down"></div>
+            </div>
+            <div class="box">
+                Kepala MA<br>Dwi Novita Sari, S,SI
+                <div class="arrow-down"></div>
+            </div>
+            <div class="box">
+                Kesiswaan <br>Syahid Maulana, S.Pd
+                <div class="arrow-down"></div>
+            </div>
+        </div>
+
+        <div class="line-connector">
+            <div class="line-vertical"></div>
+        </div>
+        <div class="line">
+            <div class="box">Bagian Tata Usaha</div>
+            <div class="box">Bagian Bendahara</div>
+            <div class="box">Bagian Tata Tertib</div>
+            <div class="box">Bagian Ketua Hikmah</div>
+            <div class="box">Bagian Talim</div>
+            <div class="box">Bagian Keamanan</div>
+            <div class="box">Bagian Bahasa</div>
+            <div class="box">Bagian Kesenian</div>
+            <div class="box">Bagian Keagamaan</div>
+            <div class="box">Bagian Kebersihan</div>
+            <div class="box">Bagian Kesehatan</div>
+        </div><br>
+    </div>
+    <script>
+        // Fungsi untuk membuat elemen salju
+        function createSnowflakes() {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            
+            // Ukuran acak untuk setiap salju
+            const size = Math.random() * 10 + 5 + 'px';
+            snowflake.style.width = size;
+            snowflake.style.height = size;
+            
+            // Posisi acak untuk setiap salju
+            snowflake.style.left = Math.random() * 100 + 'vw';
+            
+            // Durasi jatuh acak
+            snowflake.style.animationDuration = Math.random() * 5 + 5 + 's';
+            
+            // Opasitas acak
+            snowflake.style.opacity = Math.random();
+            
+            // Tambahkan salju ke body
+            document.body.appendChild(snowflake);
+            
+            // Hapus salju setelah animasi selesai
+            setTimeout(() => {
+                snowflake.remove();
+            }, 9000); // Waktu sesuai dengan durasi animasi maksimal
+        }
+
+        // Buat salju secara terus menerus
+        setInterval(createSnowflakes, 200);
+    </script>
+</body>
+</html>
